@@ -1,0 +1,18 @@
+.control {
+    z-index: 50;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: relative;
+}
+
+.control__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    width: calc(2 * var(--cell-width));
+    height: var(--cell-height);
+}

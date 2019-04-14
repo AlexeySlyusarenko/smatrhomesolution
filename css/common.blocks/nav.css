@@ -1,0 +1,36 @@
+.nav {
+    z-index: 150;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    position: absolute;
+    width: calc(100% - 4 * var(--page-pad));
+    height: var(--button-size);
+    margin: var(--page-pad);
+    margin-top: calc(var(--page-pad) + var(--label-height));
+    border-radius: var(--button-radius);
+    background-color: var(--button-bg);
+}
+
+.nav__item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.nav__img {
+    display: block;
+    position: relative;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: var(--icon-size);
+    background-color: var(--icon-bg);
+    fill: #dadada;
+    transition: all 0.2s ease-in 0s;
+}
+.active>.nav__img {
+    background-color: var(--icon-active-bg);
+    fill: rgb(245, 160, 2);
+}

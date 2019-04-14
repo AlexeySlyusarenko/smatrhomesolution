@@ -1,0 +1,9 @@
+@import "config.css";
+
+@import "common.blocks/common.css";
+@import "common.blocks/fonts.css";
+@import "common.blocks/page.css";
+@import "common.blocks/label.css";
+@import "common.blocks/nav.css";
+@import "common.blocks/control.css";
+@import "common.blocks/button.css";
