@@ -1,5 +1,5 @@
 .label {
-    font-size: var(--label-height);
-    color: var(--label-color);
-    margin: 0 0 0 calc(var(--page-pad) + var(--button-radius));
+    padding: 0 0 var(--page-pad) 0;
+    font-size: var(--font-size);
+    color: var(--font-color);
 }

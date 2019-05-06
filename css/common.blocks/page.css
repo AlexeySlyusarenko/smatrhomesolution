@@ -1,52 +1,114 @@
-.page {
-    --page-pad: 10px;
-    --page-bg: #2e2e2e;
+.page { 
+    /* set color element */
+    --page-bg: #3e3e3e;
+    --page-blur: calc(var(--page-pad) * 4);
 
-    --cell-number-in-row: 4;
-    --cell-width: calc((100vmin - 2 * var(--page-pad)) / var(--cell-number-in-row));
-    --cell-height: calc(var(--cell-width) + var(--label-height));
-    --cell-number-in-col: calc(100vmax / var(--cell-height));
+    --font-color: #fff;
 
-    --label-height: calc(var(--cell-width) / 7);
-    --label-color: #fff;
-
-    --button-size: calc(var(--cell-width) - 2 * var(--page-pad));
-    --button-radius: calc(var(--cell-width) / 4);
     --button-bg: #202124;
     --button-active-bg: #dadada;
+
+    --icon-bg: #424242;
+    --icon-fill: #dadada;
+    --icon-active-fill: #fff;
+
+    /* set size element */
+    --button-number-in-control-row: 4;
+    --button-number-in-quick-nav-row: 5;
+    --button-number-in-main-nav-row: 4;
+
+    --dist-between-el: calc(100vmin * (var(--button-number-in-quick-nav-row) - var(--button-number-in-control-row)) / (2 * var(--button-number-in-quick-nav-row) * var(--button-number-in-control-row) + var(--button-number-in-quick-nav-row) - 3 * var(--button-number-in-control-row)));
+
+    --page-pad: calc(var(--dist-between-el) / 2);
     
-    --icon-size: calc(var(--cell-width) / 2);
-    --icon-bg: #919191;
-    --icon-active-bg: #dadada;
+    --button-size: calc((100vmin - var(--dist-between-el) * (var(--button-number-in-control-row) + 1)) / var(--button-number-in-control-row));
+    --button-radius: calc(var(--button-size) / 4);
+
+    --icon-size: calc((100vmin - var(--dist-between-el) * (var(--button-number-in-quick-nav-row) + 3)) / var(--button-number-in-quick-nav-row));
+
+    --font-size: calc(var(--button-size) / 6);
+    
+    --page-nav-hide-pos: calc(var(--icon-size) + 6 * var(--page-pad));
+    --page-nav-show-pos: 550px;
+    --page-nav-hide-button-pos: calc((100vmin - 4 * var(--page-pad) - 4 * var(--icon-size)) / 5 - 2 * var(--page-pad));
 }
 
-.page {
+ .page {
     z-index: 10;
-    display: grid;
-    grid-template-rows: 1fr calc(var(--page-pad) + var(--cell-height));
-    grid-template-columns: 1fr;
+    overflow: hidden;
+    display: block;
     position: relative;
     width: 100%;
     height: 100%;
     background-color: var(--page-bg);
 }
 
-.page__control {
-    z-index: 50;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: var(--page-pad) var(--page-pad) 0 var(--page-pad);
+.page__trap {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.page--nav-show>.page__trap {
+    z-index: 190;
+}
+.page--control-item-show>.page__trap {
+    z-index: 210;
 }
 
-.page__footer {
-    z-index: 100;
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    padding: 0 var(--page-pad) var(--page-pad) var(--page-pad);
+.page__control {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 50;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(0);
+    transition: filter 0.3s ease-in 0s;
+    will-change: filter;
 }
+.page--nav-show>.page__control {
+    filter: blur(var(--page-blur));
+}
+
+.page__nav {
+    overflow: hidden;
+    z-index: 200;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    padding: var(--page-pad);
+    filter: blur(0);
+    transform: translate3d(0, calc(0px - var(--page-nav-hide-pos)), 0);
+    transition: filter 0.3s ease-in 0s, transform 0.3s ease-in 0s;
+    will-change: filter, transform;
+}
+.page--nav-show>.page__nav {
+    transform: translate3d(0, calc(0px - var(--page-nav-show-pos)), 0);
+}
+.page--control-item-show>.page__nav {
+    filter: blur(var(--page-blur));
+}
+
+/* .page__footer {
+    z-index: 150;
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--button-size) + 3 * var(--page-pad));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, var(--page-bg) calc(4 * var(--page-pad)));
+    backdrop-filter: blur(var(--page-blur));
+}
+@media screen and (max-width: 430px) and (orientation: portrait) {
+    .page__footer {
+        display: block;
+    }
+} */

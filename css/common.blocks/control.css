@@ -4,15 +4,31 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-content: flex-end;
     position: relative;
+    min-height: 100%;
+    padding: var(--page-pad) var(--page-pad) var(--page-nav-hide-pos) var(--page-pad);
+}
+@media screen and (orientation: landscape){
+    .control {
+        justify-content: flex-end;
+        align-content: space-evenly;
+        padding: var(--page-pad) var(--page-nav-hide-pos) var(--page-pad) var(--page-pad);
+    }
 }
 
 .control__item {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
     position: relative;
-    width: calc(2 * var(--cell-width));
-    height: var(--cell-height);
+    filter: blur(0);
+    transition: filter 0.3s ease-in 0s;
+}
+.page--control-item-show .control__item {
+    filter: blur(var(--page-blur));
+}
+.page--control-item-show .control__item--active {
+    filter: blur(0);
 }
