@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 11l10-8l10 8" style="stroke-linejoin: round; stroke-linecap: round; stroke: rgb(0, 189, 57); fill: none; stroke-width: 2px;"/>
+  <path d="M12 7l6 5v9h-12v-9z" style="stroke-linejoin: round; stroke-linecap: round; fill: rgb(0, 189, 57); stroke: rgb(0, 189, 57);"/>
+  <path d="M11 16h2v-1a2 2 0 1 0 -2 0z m0.5 2h1" style="stroke: rgb(255, 197, 0); fill: none; stroke-linecap: round; stroke-linejoin: round;"/>
+  <path d="M15 21A8 8 0 0 1 18 18A9 9 0 0 0 13 21A10 10 0 0 1 18 16A11 11 0 0 0 11 20A13 13 0 0 1 17 14A15 15 0 0 0 9 19A17 17 0 0 1 16 12A19 19 0 0 0 8 17A20 20 0 0 1 14 10A21 21 0 0 0 7 15A22 22 0 0 1 12 9A15 15 0 0 0 7 12" style="fill: none; stroke-linejoin: round; stroke-linecap: round;"/>
+</svg>
