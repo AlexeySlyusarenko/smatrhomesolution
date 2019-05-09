@@ -76,9 +76,9 @@
     transition: filter 0.3s ease-in 0s;
     will-change: filter;
 }
-.page--nav-show>.page__control {
+/* .page--nav-show>.page__control {
     filter: blur(var(--page-blur));
-}
+} */
 
 .page__nav {
     overflow: hidden;
