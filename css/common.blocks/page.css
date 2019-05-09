@@ -16,6 +16,8 @@
     --button-number-in-control-row: 4;
     --button-number-in-quick-nav-row: 5;
     --button-number-in-main-nav-row: 4;
+    --button-number-in-main-nav-col: 4;
+    --label-number-in-main-nav-col: 2;
 
     --dist-between-el: calc(100vmin * (var(--button-number-in-quick-nav-row) - var(--button-number-in-control-row)) / (2 * var(--button-number-in-quick-nav-row) * var(--button-number-in-control-row) + var(--button-number-in-quick-nav-row) - 3 * var(--button-number-in-control-row)));
 
@@ -29,7 +31,9 @@
     --font-size: calc(var(--button-size) / 6);
     
     --page-nav-hide-pos: calc(var(--icon-size) + 6 * var(--page-pad));
-    --page-nav-show-pos: 550px;
+    --page-nav-show-pos-temp1: calc((var(--label-number-in-main-nav-col) + var(--button-number-in-main-nav-col) + 1) * (var(--font-size) + var(--page-pad)));
+    --page-nav-show-pos-temp2: calc(var(--page-nav-show-pos-temp1) + (var(--button-number-in-main-nav-col) + 1) * (var(--page-pad) + var(--icon-size))); 
+    --page-nav-show-pos: calc(var(--page-nav-show-pos-temp2) + var(--page-nav-hide-pos));
     --page-nav-hide-button-pos: calc((100vmin - 4 * var(--page-pad) - 4 * var(--icon-size)) / 5 - 2 * var(--page-pad));
 }
 
