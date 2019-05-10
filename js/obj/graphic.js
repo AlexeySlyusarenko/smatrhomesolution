@@ -13,7 +13,7 @@ export default {
                 bathroom: {
                     title: 'Bathroom',
                     icon: '@include icon',
-                    color: 'B39DDB',
+                    color: '90CAF9',
                 },
                 wc: {
                     title: 'WC',
@@ -111,7 +111,7 @@ export default {
             security: {
                 title: 'Security',
                 icon: '@include icon',
-                color: 'BCAAA4',
+                color: '9FA8DA',
             },
             sciene: {
                 title: 'Sciene',
@@ -121,7 +121,7 @@ export default {
             setup: {
                 title: 'Setup',
                 icon: '@include icon',
-                color: '9FA8DA',
+                color: 'BCAAA4',
             }
         }
     },

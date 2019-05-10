@@ -20,10 +20,11 @@
 }
 .nav__list--quick {
     grid-template-columns: repeat(var(--button-number-in-quick-nav-row), 1fr);
+    padding: 0 0 var(--page-nav-hide-button-pos) 0;
 }
 .nav__list--main {
     grid-template-columns: repeat(var(--button-number-in-main-nav-row), 1fr);
-    padding: 0 calc((100vmin - 6 * var(--page-pad) - 4 * var(--icon-size)) / 10 - var(--page-pad));
+    padding: 0 calc((var(--page-min-size) - 6 * var(--page-pad) - 4 * var(--icon-size)) / 10 - var(--page-pad));
     padding-bottom: calc(3 * var(--page-pad));
 }
 
