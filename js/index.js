@@ -11,9 +11,10 @@ class Page {
     }
     //
     enableHandlers() {
-        // window.addEventListener('deviceorientation', (event) => {
-        //     console.log(event.absolute);
-        // }, true);
+        window.addEventListener('resize', (event) => {
+            console.log(this);
+            console.log(window.screen.orientation.angle);
+        }, true);
     }
     //
     init() {
