@@ -9,10 +9,16 @@ class Page {
         // this.controlObj = new PageControl(this.elem.querySelector('.page__control'));
         this.navObj = new Nav(this.navElem, this.elem);
 
-        this.pageMaxSize;
-        this.pageMinSize;
+        const buttonNumberInControlRow = 4,
+            buttonNumberInQuickNavRow = 5;
+            // buttonNumberInMainNavRow = 4,
+            // buttonNumberInMainNavCol = 6,
+            // labelNumberInMainNavCol = 2;
 
-        this.init();
+        this.setSize();
+        this.pagePad = this.pageMinSize / 2 * (buttonNumberInQuickNavRow - buttonNumberInControlRow) / (2 * buttonNumberInQuickNavRow * buttonNumberInControlRow + buttonNumberInQuickNavRow - 3 * buttonNumberInControlRow);
+                
+        this.setNavShowPos();
 
         this.enableHandlers();
     }
@@ -23,7 +29,7 @@ class Page {
         }, true);
     }
     //
-    init() {
+    setSize() {
         let width = this.elem.getBoundingClientRect().width,
             height = this.elem.getBoundingClientRect().height;
 
@@ -34,12 +40,19 @@ class Page {
             this.pageMaxSize = height;
             this.pageMinSize = width;
         }
-
         this.elem.style.setProperty('--page-max-size', `${this.pageMaxSize}px`);
         this.elem.style.setProperty('--page-min-size', `${this.pageMinSize}px`);
+    }
+    setNavShowPos() {
+        let navHeightEl = this.navElem.getBoundingClientRect().height - 2 * this.pagePad;
 
-        let navHeightEl = this.navElem.getBoundingClientRect().height;
-        if (navHeightEl > this.navElem.style.getPropertyValue('--page-nav-show-max-pos')) ;
+        if (navHeightEl < this.pageMaxSize) {
+            this.elem.style.setProperty('--page-nav-show-pos', `${navHeightEl}px`);
+        }
+    }
+    init() {
+        this.setSize();
+        this.setNavShowPos();
     }
 }
 

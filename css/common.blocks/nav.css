@@ -12,6 +12,7 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     background-color: var(--button-bg);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .nav__button-show {
@@ -70,6 +71,12 @@
 .nav__list--main-wrapper {
     overflow-y: auto;
     max-height: var(--page-nav-main-max-height);
+}
+@supports (-webkit-overflow-scrolling: touch) {
+    .nav__list--main-wrapper {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 .nav__item {
