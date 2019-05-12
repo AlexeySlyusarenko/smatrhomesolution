@@ -24,7 +24,7 @@
     transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
 }
 .page--nav-show .nav__button-show {
-    transform: translate3d(calc(0px - var(--page-nav-hide-button-pos)), var(--page-nav-hide-button-pos), 0);
+    transform: translate3d(calc(0px - var(--page-nav-button-hide-pos)), var(--page-nav-button-hide-pos), 0);
 }
 
 .nav__list {

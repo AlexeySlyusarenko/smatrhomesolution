@@ -13,10 +13,12 @@
     --icon-active-fill: #fff;
 
     /* set size element */
-    /* property set in page.js */
+    /* property:
+    --page-max-size
+    --page-min-size
+    set in page.js */
     --page-max-size: 100vmax;
     --page-min-size: 100vmin;
-    
 
     --button-number-in-control-row: 4;
     --button-number-in-quick-nav-row: 5;
@@ -36,16 +38,15 @@
     --font-size: calc(var(--button-size) / 6);
     
     --page-nav-hide-pos: calc(var(--icon-size) + 6 * var(--page-pad));
-    --page-nav-show-pos-temp1: calc((var(--label-number-in-main-nav-col) + var(--button-number-in-main-nav-col) + 1) * (var(--font-size) + var(--page-pad)));
-    --page-nav-show-pos-temp2: calc(var(--page-nav-show-pos-temp1) + (var(--button-number-in-main-nav-col) + 1) * (2 * var(--page-pad) + var(--icon-size))); 
-    --page-nav-show-pos-temp: calc(var(--page-nav-show-pos-temp2) + (2 + 3 * var(--label-number-in-main-nav-col) + 3) * var(--page-pad) + var(--page-nav-hide-button-pos));
-    --page-nav-show-pos: var(--page-nav-show-pos-temp);
-    --page-nav-hide-button-pos: calc((var(--page-min-size) - 4 * var(--page-pad) - 4 * var(--icon-size)) / 5 - 2 * var(--page-pad));
+    --page-nav-button-hide-pos: calc((var(--page-min-size) - 4 * var(--page-pad) - 4 * var(--icon-size)) / 5 - 2 * var(--page-pad));
     --page-nav-filter-pad-t-temp1: calc(var(--page-min-size) - var(--button-number-in-main-nav-row) * (var(--page-pad) + var(--icon-size)));
     --page-nav-filter-pad-t: calc(var(--page-nav-filter-pad-t-temp1) / var(--button-number-in-quick-nav-row) - 2 * var(--page-pad));
 
-    --page-nav-show-max-pos: calc(var(--page-max-size) - 2 * var(--page-pad));
-    --page-nav-main-max-height: calc(var(--page-nav-show-max-pos) - 4 * var(--page-pad) - var(--page-nav-filter-pad-t) - var(--button-size) - var(--font-size));
+    /* property:
+    --page-nav-show-pos
+    set in page.js */
+    --page-nav-show-pos: var(--page-max-size);
+    --page-nav-main-max-height: calc(var(--page-max-size) - 6 * var(--page-pad) - var(--page-nav-filter-pad-t) - var(--icon-size) - var(--font-size));
 }
 
  .page {
@@ -92,7 +93,7 @@
         -webkit-overflow-scrolling: touch;
     }
 }
-/* comment becouse bug animation  */
+/* comment becouse bug blur() animation  */
 /* .page--nav-show>.page__control {
     filter: blur(var(--page-blur));
 } */
@@ -113,9 +114,10 @@
 .page--nav-show>.page__nav {
     transform: translate3d(0, calc(0px - var(--page-nav-show-pos)), 0);
 }
-.page--control-item-show>.page__nav {
+/* comment becouse bug blur() animation  */
+/* .page--control-item-show>.page__nav {
     filter: blur(var(--page-blur));
-}
+} */
 
 /* .page__footer {
     z-index: 150;

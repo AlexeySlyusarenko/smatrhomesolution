@@ -1,0 +1,22 @@
+{
+  "name": "smart_home_solution",
+  "version": "1.0.0",
+  "description": "smart home solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeySlyusarenko/smatrhomesolution.git"
+  },
+  "author": "Alexey Slyusarenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexeySlyusarenko/smatrhomesolution/issues"
+  },
+  "homepage": "https://github.com/AlexeySlyusarenko/smatrhomesolution#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}

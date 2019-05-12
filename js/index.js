@@ -1,6 +1,13 @@
 class Page {
     constructor(pageElem) {
         this.elem = pageElem;
+        // this.trapElem = this.elem.querySelector('.page__trap');
+        // this.controlElem = this.elem.querySelector('.page__control');
+        this.navElem = this.elem.querySelector('.page__nav');
+
+        // this.trapObj = new Trap(this.elem.querySelector('.page__trap'));
+        // this.controlObj = new PageControl(this.elem.querySelector('.page__control'));
+        this.navObj = new Nav(this.navElem, this.elem);
 
         this.pageMaxSize;
         this.pageMinSize;
@@ -11,9 +18,8 @@ class Page {
     }
     //
     enableHandlers() {
-        window.addEventListener('resize', (event) => {
-            console.log(this);
-            console.log(window.screen.orientation.angle);
+        window.addEventListener('resize', () => {
+            this.init();
         }, true);
     }
     //
@@ -31,6 +37,26 @@ class Page {
 
         this.elem.style.setProperty('--page-max-size', `${this.pageMaxSize}px`);
         this.elem.style.setProperty('--page-min-size', `${this.pageMinSize}px`);
+
+        let navHeightEl = this.navElem.getBoundingClientRect().height;
+        if (navHeightEl > this.navElem.style.getPropertyValue('--page-nav-show-max-pos')) ;
+    }
+}
+
+class Nav {
+    constructor(navElem, pageElem) {
+        this.elem = navElem;
+        this.pageElem = pageElem;
+
+        this.buttonElemArr = this.elem.querySelectorAll('.button');
+        this.buttonObjArr = [];
+
+        for (let i = 0; i < this.buttonElemArr.length; i++) {
+            if (this.buttonElemArr[i].classList.contains('button--nav-show')) {
+                this.buttonObjArr[i] = new ButtonShowNav(this.buttonElemArr[i], this.pageElem);
+            }
+            this.buttonObjArr[i] = new ButtonNav(this.buttonElemArr[i], this.pageElem);
+        }
     }
 }
 
@@ -91,29 +117,6 @@ class ButtonShowNav extends Button {
         };
         this.enableHandlers();
     }
-} 
-
-let pageObj,
-    buttonNavObjArr = [],
-    buttonShowNavObj;
-
-let buttonObjArr = [],
-    pageElem = document.querySelector('.page'),
-    pageTrapElem = document.querySelector('.page__trap'),
-    pageControlElem = document.querySelector('.page__control'),
-    pageNavElemArr = document.querySelectorAll('.page__nav');
-
-let buttonControlElemArr = pageControlElem.querySelectorAll('.button');
-
-for (let i = 0; i < pageNavElemArr.length; i++) {
-    buttonNavElemArr = pageNavElemArr[i].querySelectorAll('.button');
 }
 
-pageObj = new Page(pageElem);
-
-for (let i = 0; i < buttonNavElemArr.length; i++) {
-    if (buttonNavElemArr[i].classList.contains('button--nav-show')) {
-        buttonShowNavObj = new ButtonShowNav(buttonNavElemArr[i], pageElem);
-    }
-    buttonNavObjArr[i] = new ButtonNav(buttonNavElemArr[i], pageElem);
-}
+new Page(document.querySelector('.page'));
