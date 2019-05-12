@@ -1,14 +1,9 @@
 .button {
-    z-index: 200;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    transform: translate3d(0, 0, 0);
     transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
-}
-.page--nav-show .button--show-nav {
-    transform: translate3d(calc(0px - var(--page-nav-hide-button-pos)), var(--page-nav-hide-button-pos), 0);
 }
 
 .button__icon {
@@ -20,15 +15,20 @@
     stroke-width: 2px;
     stroke: var(--icon-color);
     fill: none;
-    transition: stroke 0.3s ease-in 0s;
+    transition: all 0.3s ease-in 0s;
 }
+
 .button__icon>path {
     transform-origin: 12px 12px;
     transition: transform 0.3s ease-in 0s;
 }
-.button--show-nav>.button__icon>path {
+.button--nav-show>.button__icon>path {
     transform: rotate3d(1, 0, 0, 0);
 }
+.page--nav-show .button--nav-show>.button__icon>path {
+    transform: rotate3d(1, 0, 0, 180deg);
+}
+
 .button--control-switch>.button__icon {
     width: var(--button-size);
     height: var(--button-size);
@@ -46,10 +46,6 @@
     height: var(--icon-size);
     border-radius: var(--icon-size);
     background-color: var(--icon-bg);
-    transition: all 0.3s ease-in 0s;
-}
-.page--nav-show .button--show-nav>.button__icon>path {
-    transform: rotate3d(1, 0, 0, 180deg);
 }
 
 .button__text {
@@ -60,9 +56,9 @@
     color: var(--font-color);
     transition: opacity 0.3s ease-in 0s;
 }
-.button--show-nav .button__text {
+.button--nav-show .button__text {
     opacity: 0;
 }
-.page--nav-show .button--show-nav .button__text {
+.page--nav-show .button--nav-show .button__text {
     opacity: 1;
 }

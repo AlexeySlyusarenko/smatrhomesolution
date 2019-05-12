@@ -1,67 +1,71 @@
 export default {
     place: {
-        firstFloor: {
-            title: 'Fist floor',
-            icon: '@include icon',
-            color: 'FFCC80',
-            children: {
-                bedroom: {
-                    title: 'Bedroom',
-                    icon: '@include icon',
-                    color: 'FFCC80',
-                },
-                bathroom: {
-                    title: 'Bathroom',
-                    icon: '@include icon',
-                    color: '90CAF9',
-                },
-                wc: {
-                    title: 'WC',
-                    icon: '@include icon',
-                    color: 'FFAB91',
-                },
-                hall: {
-                    title: 'Hall',
-                    icon: '@include icon',
-                    color: 'EF9A9A',
-                },
-                kitchen: {
-                    title: 'Kitchen',
-                    icon: '@include icon',
-                    color: '90CAF9',
-                },
-                wardrobe: {
-                    title: 'Wardrobe',
-                    icon: '@include icon',
-                    color: 'C5E1A5',
-                },
-                diningroom: {
-                    title: 'Dining room',
-                    icon: '@include icon',
-                    color: 'A5D6A7',
-                },
-                loungeroom: {
-                    title: 'Louge room',
-                    icon: '@include icon',
-                    color: '81D4FA',
-                },
-                balcony: {
-                    title: 'Balcony',
-                    icon: '@include icon',
-                    color: '90CAF9',
-                }
-            }
+        title: '1st floor',
+        children: {
+            firstFloor: {
+                title: '1st floor',
+                icon: '@include icon',
+                color: 'FFCC80',
+            },
+            bedroom: {
+                title: 'Bedroom',
+                icon: '@include icon',
+                color: 'FFCC80',
+            },
+            bathroom: {
+                title: 'Bathroom',
+                icon: '@include icon',
+                color: '90CAF9',
+            },
+            wc: {
+                title: 'WC',
+                icon: '@include icon',
+                color: 'FFAB91',
+            },
+            hall: {
+                title: 'Hall',
+                icon: '@include icon',
+                color: 'EF9A9A',
+            },
+            kitchen: {
+                title: 'Kitchen',
+                icon: '@include icon',
+                color: '90CAF9',
+            },
+            childrenroom: {
+                title: 'Children',
+                icon: '@include icon',
+                color: 'FFAB91',
+            },
+            playroom: {
+                title: 'Playroom',
+                icon: '@include icon',
+                color: 'FFAB91',
+            },
+            wardrobe: {
+                title: 'Wardrobe',
+                icon: '@include icon',
+                color: 'C5E1A5',
+            },
+            diningroom: {
+                title: 'Dining',
+                icon: '@include icon',
+                color: '81D4FA',
+            },
+            loungeroom: {
+                title: 'Louge',
+                icon: '@include icon',
+                color: 'A5D6A7',
+            },
+            balcony: {
+                title: 'Balcony',
+                icon: '@include icon',
+                color: '90CAF9',
+            },
         },
-        // secondFloor: {},
-        // thirdFloor: {},
-        // basement: {},
-        // stead: {},
-        // garage: {}
     },
     system: {
         title: 'System',
-        icon: '@include icon',
-        color: 'FFCC80',
         children: {
             light: {
                 title: 'Lighting',
@@ -122,13 +126,31 @@ export default {
                 title: 'Setup',
                 icon: '@include icon',
                 color: 'BCAAA4',
+            },
+        },
+    },
+    filter: {
+        title: 'Filter',
+        children: {
+            filter: {
+                title: 'Filter',
+                icon: '@include icon',
+                color: 'FFCC80',
+            },
+            apply: {
+                title: 'Apply',
+                icon: '@include icon',
+                color: 'A5D6A7',
+            },
+            clear: {
+                title: 'Clear',
+                icon: '@include icon',
+                color: 'FFAB91',
             }
         }
     },
     misc: {
         title: 'Misc',
-        icon: '@include icon',
-        color: 'FFCC80',
         children: {
             home: {
                 title: 'Home',
@@ -139,7 +161,7 @@ export default {
                 title: 'Lock device',
                 icon: '@include icon',
                 color: 'EF9A9A',
-            }
-        }
-    }
+            },
+        },
+    },
 };

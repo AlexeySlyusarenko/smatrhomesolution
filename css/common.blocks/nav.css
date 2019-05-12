@@ -1,4 +1,5 @@
 .nav {
+    z-index: 350;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -13,32 +14,70 @@
     background-color: var(--button-bg);
 }
 
+.nav__button-show {
+    z-index: 400;
+    display: block;
+    position: absolute;
+    right: var(--page-pad);
+    top: var(--page-pad);
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.3s ease 0s, transform 0.3s ease 0s;
+}
+.page--nav-show .nav__button-show {
+    transform: translate3d(calc(0px - var(--page-nav-hide-button-pos)), var(--page-nav-hide-button-pos), 0);
+}
+
 .nav__list {
     display: grid;
     align-items: flex-start;
     position: relative;
 }
+
 .nav__list--quick {
+    z-index: 390;
+    opacity: 1;
+    position: absolute;
     grid-template-columns: repeat(var(--button-number-in-quick-nav-row), 1fr);
-    padding: 0 0 var(--page-nav-hide-button-pos) 0;
+    transform: scale3d(1, 1, 1);
+    transition: opacity 0.3s ease 0.1s, transform 0s ease 0s;
 }
+.page--nav-show .nav__list--quick {
+    opacity: 0;
+    transform: scale3d(0, 0, 1);
+    transition: opacity 0.3s ease 0s, transform 0s ease 0.5s;
+}
+
+.nav__list--filter {
+    z-index: 390;
+    opacity: 0;
+    grid-template-columns: repeat(var(--button-number-in-main-nav-row), 1fr);
+    padding: var(--page-nav-filter-pad-t) 0 0 0;
+    transform: scale3d(0, 0, 1);
+    transition: opacity 0.3s ease 0s, transform 0s ease 0.5s;
+}
+.page--nav-show .nav__list--filter {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+    transition: opacity 0.3s ease 0.1s, transform 0s ease 0s;
+}
+
 .nav__list--main {
+    z-index: 360;
     grid-template-columns: repeat(var(--button-number-in-main-nav-row), 1fr);
     padding: 0 calc((var(--page-min-size) - 6 * var(--page-pad) - 4 * var(--icon-size)) / 10 - var(--page-pad));
     padding-bottom: calc(3 * var(--page-pad));
 }
+.nav__list--main-wrapper {
+    overflow-y: auto;
+    max-height: var(--page-nav-main-max-height);
+}
 
 .nav__item {
-    opacity: 1;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     position: relative;
     transition: opacity 0.3s ease-in 0.1s;
-}
-.page--nav-show .nav__item--hide-when-nav-show {
-    opacity: 0;
-    transition: opacity 0.3s ease-out 0s;
 }
 
 .nav__item--title {

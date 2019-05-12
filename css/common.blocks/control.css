@@ -23,12 +23,14 @@
     justify-content: flex-end;
     align-items: center;
     position: relative;
-    filter: blur(0);
+    /* comment becouse bug animation  */
+    /* filter: blur(0); */
     transition: filter 0.3s ease-in 0s;
 }
-.page--control-item-show .control__item {
+/* comment becouse bug animation  */
+/* .page--control-item-show .control__item {
     filter: blur(var(--page-blur));
 }
 .page--control-item-show .control__item--active {
     filter: blur(0);
-}
+} */
