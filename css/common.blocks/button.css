@@ -20,13 +20,21 @@
 
 .button__icon>path {
     transform-origin: 12px 12px;
-    transition: transform 0.3s ease-in 0s;
+    transition: transform 0.2s ease 0s;
 }
 .button--nav-show>.button__icon>path {
-    transform: rotate3d(1, 0, 0, 0);
+    transform: rotate3d(0, 0, 1, 0);
 }
 .page--nav-show .button--nav-show>.button__icon>path {
-    transform: rotate3d(1, 0, 0, 180deg);
+    transform: rotate3d(0, 0, 1, 180deg);
+}
+@media (orientation: landscape) {
+    .button--nav-show>.button__icon>path {
+        transform: rotate3d(0, 0, 1, 270deg);
+    }
+    .page--nav-show .button--nav-show>.button__icon>path {
+        transform: rotate3d(0, 0, 1, 90deg);
+    } 
 }
 
 .button--control-switch>.button__icon {
@@ -54,11 +62,12 @@
     padding: 0 0 var(--page-pad) 0;
     font-size: var(--font-size);
     color: var(--font-color);
-    transition: opacity 0.3s ease-in 0s;
+    transition: opacity 0.2s ease-in 0s;
 }
 .button--nav-show .button__text {
     opacity: 0;
 }
 .page--nav-show .button--nav-show .button__text {
     opacity: 1;
+    transition: opacity 0.2s ease-in 0.1s;
 }

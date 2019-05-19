@@ -6,6 +6,4 @@ export default function (elemContainer, templateObj) {
             new templateObj[indexElementTemplateObj].objClass(elemContainer, templateObj, indexElementTemplateObj);
         }
     }
-
-    console.log(global.elementsObj);
 }

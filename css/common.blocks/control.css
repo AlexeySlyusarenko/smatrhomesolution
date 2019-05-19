@@ -23,14 +23,4 @@
     justify-content: flex-end;
     align-items: center;
     position: relative;
-    /* comment becouse bug blur() animation  */
-    /* filter: blur(0); */
-    transition: filter 0.3s ease-in 0s;
 }
-/* comment becouse bug blur() animation  */
-/* .page--control-item-show .control__item {
-    filter: blur(var(--page-blur));
-}
-.page--control-item-show .control__item--active {
-    filter: blur(0);
-} */

@@ -8,51 +8,83 @@ class Page {
         // this.trapObj = new Trap(this.elem.querySelector('.page__trap'));
         // this.controlObj = new PageControl(this.elem.querySelector('.page__control'));
         this.navObj = new Nav(this.navElem, this.elem);
+        
+        this.width;
+        this.height;
+        this.navElWidth;
+        this.navElHeight;
 
-        const buttonNumberInControlRow = 4,
-            buttonNumberInQuickNavRow = 5;
-            // buttonNumberInMainNavRow = 4,
-            // buttonNumberInMainNavCol = 6,
-            // labelNumberInMainNavCol = 2;
+        this.maxSize;
+        this.minSize;
+        this.pad;
+        this.navMaxSize;
 
-        this.setSize();
-        this.pagePad = this.pageMinSize / 2 * (buttonNumberInQuickNavRow - buttonNumberInControlRow) / (2 * buttonNumberInQuickNavRow * buttonNumberInControlRow + buttonNumberInQuickNavRow - 3 * buttonNumberInControlRow);
-                
-        this.setNavShowPos();
+        this.setTimeoutId;
 
+        this.init();
         this.enableHandlers();
     }
     //
     enableHandlers() {
-        window.addEventListener('resize', () => {
-            this.init();
-        }, true);
+        this.elem.onresize = () => {
+            this.getSizeAndOrientation();
+            this.setStyleSize();
+            if (this.setTimeoutId) clearTimeout(this.setTimeoutId);
+            this.setTimeoutId = setTimeout(() => {
+                this.getElemSize();
+                this.setElemStyleSize();
+            }, 500);
+        };
     }
     //
-    setSize() {
-        let width = this.elem.getBoundingClientRect().width,
-            height = this.elem.getBoundingClientRect().height;
-
-        if(width > height) {
-            this.pageMaxSize = width;
-            this.pageMinSize = height;
+    getSizeAndOrientation() {
+        this.width = this.elem.getBoundingClientRect().width;
+        this.height = this.elem.getBoundingClientRect().height;
+        if (this.width > this.height) {
+            this.maxSize = this.width;
+            this.minSize = this.height;
+            this.orientation = 'landscape';
         } else {
-            this.pageMaxSize = height;
-            this.pageMinSize = width;
+            this.maxSize = this.height;
+            this.minSize = this.width;
+            this.orientation = 'portrait';
         }
-        this.elem.style.setProperty('--page-max-size', `${this.pageMaxSize}px`);
-        this.elem.style.setProperty('--page-min-size', `${this.pageMinSize}px`);
     }
-    setNavShowPos() {
-        let navHeightEl = this.navElem.getBoundingClientRect().height - 2 * this.pagePad;
+    setStyleSize() {
+        this.elem.style.setProperty('--page-max-size', `${this.maxSize}px`);
+        this.elem.style.setProperty('--page-min-size', `${this.minSize}px`);
+    }
+    getElemSize() {
+        this.navElWidth = this.navElem.getBoundingClientRect().width;
+        this.navElHeight = this.navElem.getBoundingClientRect().height;
+        if(this.orientation == 'landscape') {
+            this.navMaxSize = this.navElWidth;
+        } else {
+            this.navMaxSize = this.navElHeight;
+        }
+        // console.log(this.width, this.height, this.navElWidth, this.navElHeight);
+    }
+    setElemStyleSize() {
+        const numberOfButtonInControlRow = 4,
+            numberOfButtonInQuickNavRow = 5;
+            // numberOfButtonInMainNavRow = 4,
+            // numberOfButtonInMainNavCol = 6,
+            // lumberOfLabelInMainNavCol = 2;
 
-        if (navHeightEl < this.pageMaxSize) {
-            this.elem.style.setProperty('--page-nav-show-pos', `${navHeightEl}px`);
+        this.pad = this.minSize / 2 * (numberOfButtonInQuickNavRow - numberOfButtonInControlRow) / (2 * numberOfButtonInQuickNavRow * numberOfButtonInControlRow + numberOfButtonInQuickNavRow - 3 * numberOfButtonInControlRow);
+
+        let navMaxSize = this.navMaxSize - 3 * this.pad;
+        if (this.navMaxSize <= this.maxSize) {
+            this.elem.style.setProperty('--page-nav-show-pos', `${navMaxSize}px`);
+        } else {
+            this.elem.style.setProperty('--page-nav-show-pos', `${this.maxSize}px`);
         }
     }
     init() {
-        this.setSize();
-        this.setNavShowPos();
+        this.getSizeAndOrientation();
+        this.setStyleSize();
+        this.getElemSize();
+        this.setElemStyleSize();
     }
 }
 

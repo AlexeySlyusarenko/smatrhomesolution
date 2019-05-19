@@ -1,9 +1,10 @@
 .page { 
     /* set color element */
-    --page-bg: #3e3e3e;
-    --page-blur: calc(var(--page-pad) * 4);
-
     --font-color: #fff;
+
+    --page-bg: #3e3e3e;
+
+    --nav-bg: rgba(32, 33, 36, 1);
 
     --button-bg: #202124;
     --button-active-bg: #dadada;
@@ -48,8 +49,15 @@
     --page-nav-show-pos: var(--page-max-size);
     --page-nav-main-max-height: calc(var(--page-max-size) - 6 * var(--page-pad) - var(--page-nav-filter-pad-t) - var(--icon-size) - var(--font-size));
 }
+@media (orientation: landscape) {
+    .page {
+        --icon-size: calc((var(--page-min-size) - var(--dist-between-el) * (var(--button-number-in-quick-nav-row) + 3)) / var(--button-number-in-quick-nav-row));
+        --font-size-temp1: calc(var(--page-min-size) - 6 * var(--page-pad) - var(--button-number-in-main-nav-row) * (var(--icon-size) + 3 * var(--page-pad)));
+        --font-size: calc(var(--font-size-temp1) / var(--button-number-in-main-nav-row))
+    }
+}
 
- .page {
+.page {
     z-index: 10;
     overflow: hidden;
     display: block;
@@ -83,9 +91,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-    filter: blur(0);
-    transition: filter 0.3s ease-in 0s;
-    will-change: filter;
 }
 @supports (-webkit-overflow-scrolling: touch) {
     .page__control {
@@ -93,45 +98,30 @@
         -webkit-overflow-scrolling: touch;
     }
 }
-/* comment becouse bug blur() animation  */
-/* .page--nav-show>.page__control {
-    filter: blur(var(--page-blur));
-} */
 
 .page__nav {
     z-index: 300;
     overflow: hidden;
     position: absolute;
-    left: 0;
     top: 100%;
+    left: 0px;
     width: 100%;
     padding: var(--page-pad);
-    filter: blur(0);
     transform: translate3d(0, calc(0px - var(--page-nav-hide-pos)), 0);
-    transition: filter 0.3s ease-in 0s, transform 0.3s ease-in 0s;
-    will-change: filter, transform;
+    transition: transform 0.3s ease-in 0s;
+    will-change: transform;
 }
 .page--nav-show>.page__nav {
     transform: translate3d(0, calc(0px - var(--page-nav-show-pos)), 0);
 }
-/* comment becouse bug blur() animation  */
-/* .page--control-item-show>.page__nav {
-    filter: blur(var(--page-blur));
-} */
-
-/* .page__footer {
-    z-index: 150;
-    display: none;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: calc(var(--button-size) + 3 * var(--page-pad));
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, var(--page-bg) calc(4 * var(--page-pad)));
-    backdrop-filter: blur(var(--page-blur));
-}
-@media screen and (max-width: 430px) and (orientation: portrait) {
-    .page__footer {
-        display: block;
+@media (orientation: landscape) {
+    .page__nav {
+        top: 0px;
+        left: 100%;
+        width: auto;
+        transform: translate3d(calc(0px - var(--page-nav-hide-pos)), 0, 0);
     }
-} */
+    .page--nav-show>.page__nav {
+        transform: translate3d(calc(0px - var(--page-nav-show-pos)), 0, 0);
+    }
+}
