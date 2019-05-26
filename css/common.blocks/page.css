@@ -1,4 +1,4 @@
-.page { 
+html { 
     /* set color element */
     --font-color: #fff;
 
@@ -65,8 +65,8 @@
     overflow: hidden;
     display: block;
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: var(--page-width);
+    height: var(--page-height);
     background-color: var(--page-bg);
 }
 

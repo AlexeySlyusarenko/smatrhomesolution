@@ -19,7 +19,7 @@ class Page {
         this.pad;
         this.navMaxSize;
 
-        this.setTimeoutId;
+        this.onresiseTimeoutId;
 
         this.init();
         this.enableHandlers();
@@ -30,8 +30,8 @@ class Page {
             this.getSizeAndOrientationWidow();
             this.setStyleSize();
             this.navObj.setElemStyle();
-            if (this.setTimeoutId) clearTimeout(this.setTimeoutId);
-            this.setTimeoutId = setTimeout(() => {
+            if (this.onresiseTimeoutId) clearTimeout(this.onresiseTimeoutId);
+            this.onresiseTimeoutId = setTimeout(() => {
                 this.getElemSize();
                 this.setElemStyleSize();
             }, 500);
@@ -52,6 +52,8 @@ class Page {
         }
     }
     setStyleSize() {
+        document.querySelector('html').style.setProperty('--page-width', `${this.width}px`);
+        document.querySelector('html').style.setProperty('--page-height', `${this.height}px`);
         this.elem.style.setProperty('--page-max-size', `${this.maxSize}px`);
         this.elem.style.setProperty('--page-min-size', `${this.minSize}px`);
     }

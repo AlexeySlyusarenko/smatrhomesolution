@@ -1,0 +1,9 @@
+html { 
+    /* set size element */
+    /* property:
+    --page-max-size
+    --page-min-size
+    set in page.js */
+    --page-width: 100vmax;
+    --page-height: 100vmin;
+}
