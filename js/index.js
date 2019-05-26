@@ -23,6 +23,7 @@ class Page {
         this.navMaxSize;
 
         this.onresiseTimeoutId;
+        this.onresiseTimeoutId_2;
 
         this.init();
         this.enableHandlers();
@@ -31,14 +32,17 @@ class Page {
     enableHandlers() {
         this.elem.onresize = () => {
             if (this.onresiseTimeoutId) clearTimeout(this.onresiseTimeoutId);
+            if (this.onresiseTimeoutId_2) clearTimeout(this.onresiseTimeoutId);
             this.onresiseTimeoutId = setTimeout(() => {
                 this.getSizeAndOrientationWidow();
                 this.setStyleSize();
                 this.debugMes();
                 this.navObj.setElemStyle();
-                this.getElemSize();
-                this.setElemStyleSize();
-            }, 700);
+                this.onresiseTimeoutId_2 = setTimeout(() => {
+                    this.getElemSize();
+                    this.setElemStyleSize();
+                }, 500)
+            }, 300);
         };
     }
     //
