@@ -30,15 +30,14 @@ class Page {
     //
     enableHandlers() {
         this.elem.onresize = () => {
-            this.getSizeAndOrientationWidow();
-            this.setStyleSize();
-            this.navObj.setElemStyle();
-            
             if (this.onresiseTimeoutId) clearTimeout(this.onresiseTimeoutId);
             this.onresiseTimeoutId = setTimeout(() => {
+                this.getSizeAndOrientationWidow();
+                this.setStyleSize();
+                this.debugMes();
+                this.navObj.setElemStyle();
                 this.getElemSize();
                 this.setElemStyleSize();
-                this.debugMes();
             }, 500);
         };
     }
