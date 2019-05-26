@@ -12,7 +12,7 @@
 @media screen and (orientation: landscape){
     .control {
         justify-content: flex-end;
-        align-content: space-evenly;
+        align-content: flex-start;
         padding: var(--page-pad) var(--page-nav-hide-pos) var(--page-pad) var(--page-pad);
     }
 }
