@@ -33,11 +33,12 @@ class Page {
             this.getSizeAndOrientationWidow();
             this.setStyleSize();
             this.navObj.setElemStyle();
-            this.debugMes();
+            
             if (this.onresiseTimeoutId) clearTimeout(this.onresiseTimeoutId);
             this.onresiseTimeoutId = setTimeout(() => {
                 this.getElemSize();
                 this.setElemStyleSize();
+                this.debugMes();
             }, 500);
         };
     }
@@ -95,7 +96,7 @@ class Page {
     debugMes() {
         let pageDebug = this.elem.querySelector('.page__debug');
 
-        pageDebug.textContent = `width: ${this.width}, height: ${this.height}
+        pageDebug.textContent = `width: ${window.innerWidth}, height: ${window.innerHeight}
                                     count: ${this.debugCount}`;
         this.debugCount++;
     }
