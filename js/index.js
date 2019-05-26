@@ -52,8 +52,6 @@ class Page {
         }
     }
     setStyleSize() {
-        document.querySelector('html').style.setProperty('--page-width', `${this.width}px`);
-        document.querySelector('html').style.setProperty('--page-height', `${this.height}px`);
         this.elem.style.setProperty('--page-max-size', `${this.maxSize}px`);
         this.elem.style.setProperty('--page-min-size', `${this.minSize}px`);
     }
