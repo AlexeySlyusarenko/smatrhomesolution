@@ -1,5 +1,8 @@
 class Page {
     constructor(pageElem) {
+        //
+        this.debugCount = 1;
+        //
         this.elem = pageElem;
         // this.trapElem = this.elem.querySelector('.page__trap');
         // this.controlElem = this.elem.querySelector('.page__control');
@@ -30,6 +33,7 @@ class Page {
             this.getSizeAndOrientationWidow();
             this.setStyleSize();
             this.navObj.setElemStyle();
+            this.debugMes();
             if (this.onresiseTimeoutId) clearTimeout(this.onresiseTimeoutId);
             this.onresiseTimeoutId = setTimeout(() => {
                 this.getElemSize();
@@ -86,6 +90,14 @@ class Page {
         this.setStyleSize();
         this.getElemSize();
         this.setElemStyleSize();
+    }
+    //
+    debugMes() {
+        let pageDebug = this.elem.querySelector('.page__debug');
+
+        pageDebug.textContent = `width: ${this.width}, height: ${this.height}
+                                    count: ${this.debugCount}`;
+        this.debugCount++;
     }
 }
 
