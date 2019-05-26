@@ -78,7 +78,7 @@ class Page {
 
         this.pad = this.minSize / 2 * (numberOfButtonInQuickNavRow - numberOfButtonInControlRow) / (2 * numberOfButtonInQuickNavRow * numberOfButtonInControlRow + numberOfButtonInQuickNavRow - 3 * numberOfButtonInControlRow);
 
-        let navMaxSize = this.navMaxSize - this.pad;
+        let navMaxSize = this.navMaxSize;
         if (this.navMaxSize <= this.maxSize) {
             this.elem.style.setProperty('--page-nav-show-pos', `${navMaxSize}px`);
         } else {
