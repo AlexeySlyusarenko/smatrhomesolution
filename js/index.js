@@ -38,7 +38,7 @@ class Page {
                 this.navObj.setElemStyle();
                 this.getElemSize();
                 this.setElemStyleSize();
-            }, 500);
+            }, 700);
         };
     }
     //
@@ -78,12 +78,14 @@ class Page {
 
         this.pad = this.minSize / 2 * (numberOfButtonInQuickNavRow - numberOfButtonInControlRow) / (2 * numberOfButtonInQuickNavRow * numberOfButtonInControlRow + numberOfButtonInQuickNavRow - 3 * numberOfButtonInControlRow);
 
-        let navMaxSize = this.navMaxSize - 3 * this.pad;
+        let navMaxSize = this.navMaxSize - this.pad;
         if (this.navMaxSize <= this.maxSize) {
             this.elem.style.setProperty('--page-nav-show-pos', `${navMaxSize}px`);
         } else {
             this.elem.style.setProperty('--page-nav-show-pos', `${this.maxSize}px`);
         }
+
+        window.scrollTo(0, 0);
     }
     init() {
         this.getSizeAndOrientationWidow();
