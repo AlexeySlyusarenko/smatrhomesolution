@@ -41,19 +41,19 @@
     width: var(--button-size);
     height: var(--button-size);
     border-radius: var(--button-radius);
-    background-color: var(--button-bg);
+    background-color: var(--button-bg-color);
 }
 .button--control-slide>.button__icon {
     width: calc(2 * (var(--button-size) + var(--page-pad)));
     height: var(--button-size);
     border-radius: var(--button-radius);
-    background-color: var(--button-bg);
+    background-color: var(--button-bg-color);
 }
 .button--nav-switch>.button__icon {
     width: var(--icon-size);
     height: var(--icon-size);
     border-radius: var(--icon-size);
-    background-color: var(--icon-bg);
+    background-color: var(--icon-bg-color);
 }
 
 .button__text {

@@ -65,7 +65,7 @@
     z-index: 390;
     opacity: 1;
     position: absolute;
-    grid-template-columns: repeat(var(--button-number-in-quick-nav), 1fr);
+    grid-template-columns: repeat(var(--button-qnt-in-quick-nav), 1fr);
     transform: scale3d(1, 1, 1);
     transition: opacity 0.3s ease 0.1s, transform 0s ease 0s;
 }
@@ -78,7 +78,7 @@
 .nav__list--filter {
     z-index: 390;
     opacity: 0;
-    grid-template-columns: repeat(var(--button-number-in-main-nav), 1fr);
+    grid-template-columns: repeat(var(--button-qnt-in-main-nav), 1fr);
     padding-top: var(--page-nav-filter-pad-t);
     padding-bottom: 0; 
     padding-right: calc((var(--page-min-size) - 6 * var(--page-pad) - 4 * var(--icon-size)) / 10 - var(--page-pad));
@@ -114,16 +114,16 @@
     }
 
     .nav__list--quick {
-        grid-template-rows: repeat(var(--button-number-in-quick-nav), 1fr);
+        grid-template-rows: repeat(var(--button-qnt-in-quick-nav), 1fr);
     }
     
     .nav__list--filter {
-        grid-template-rows: repeat(var(--button-number-in-main-nav), 1fr);
+        grid-template-rows: repeat(var(--button-qnt-in-main-nav), 1fr);
         padding: 0;
     }
     
     .nav__list--main {
-        grid-template-columns: repeat(var(--button-number-in-main-nav-row), 1fr);
+        grid-template-columns: repeat(var(--button-qnt-in-main-nav-row), 1fr);
         padding: 0 calc((var(--page-min-size) - 6 * var(--page-pad) - 4 * var(--icon-size)) / 10 - var(--page-pad));
         padding-bottom: 0;
     }
@@ -142,24 +142,24 @@
 }
 
 .nav__item--title {
-    grid-column: 1 / calc(var(--button-number-in-main-nav) + 1);
+    grid-column: 1 / calc(var(--button-qnt-in-main-nav) + 1);
     display: grid;
     text-align: center;
     padding: calc(3 * var(--page-pad)) 0 0 0;
 }
 
 .nav__list--quick .nav__item--title {
-    grid-template-columns: repeat(var(--button-number-in-quick-nav), 1fr);
+    grid-template-columns: repeat(var(--button-qnt-in-quick-nav), 1fr);
 }
 .nav__list--main .nav__item--title {
-    grid-template-columns: repeat(var(--button-number-in-main-nav), 1fr);
+    grid-template-columns: repeat(var(--button-qnt-in-main-nav), 1fr);
 }
 @media (orientation: landscape) {
     .nav__item--title {
-        grid-column: 1 / calc(var(--button-number-in-main-nav-row) + 1);
+        grid-column: 1 / calc(var(--button-qnt-in-main-nav-row) + 1);
         padding: calc(2 * var(--page-pad)) 0 0 0;
     }
     .nav__list--main .nav__item--title {
-        grid-template-columns: repeat(var(--button-number-in-main-nav-row), 1fr);
+        grid-template-columns: repeat(var(--button-qnt-in-main-nav-row), 1fr);
     }
 }
