@@ -1,7 +1,7 @@
 import { 
     ButtonNav,
     ButtonShowNav
- } from "/js/button.mjs";
+ } from "./button.mjs";
 
 class Nav {
     constructor(navElem, pageElem) {

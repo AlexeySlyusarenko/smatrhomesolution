@@ -1,5 +1,5 @@
 import { 
     Page
- } from "/js/page.mjs";
+ } from "./page.mjs";
 
 new Page(document.querySelector('.page'));

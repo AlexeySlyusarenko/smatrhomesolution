@@ -1,6 +1,6 @@
 import {
     Nav
-} from "/js/nav.mjs";
+} from "./nav.mjs";
 
 class Page {
     constructor(pageElem) {
