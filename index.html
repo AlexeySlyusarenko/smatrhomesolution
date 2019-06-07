@@ -41,6 +41,9 @@
                 position: relative;
                 width: 100%;
                 height: 100%;
+                filter: blur(0px);
+                transition: filter 0.5s linear 4s;
+                will-change: filter;
             }
             .screen-saver {
                 z-index: 30;
@@ -83,6 +86,17 @@
         </section>
 
         <style>
+            .screen-saver.screen-saver--animation {
+                animation: screen-saver-animation 1s ease-in 4s 1 normal forwards;
+            }
+            @keyframes screen-saver-animation {
+                0% {
+                    filter: blur(0px);
+                }
+                100% {
+                    filter: blur(40px);
+                }
+            }
             .screen-saver--animation .screen-saver__logo>path:nth-child(1) {
                 animation: screen-saver-logo-animation 2s linear 0.1s 1 normal forwards;
             }
