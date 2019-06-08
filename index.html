@@ -37,7 +37,9 @@
                 z-index: 20;
                 overflow: hidden;
                 display: block;
-                position: relative;
+                position: fixed;
+                left: 0;
+                top: 0;
                 width: 100%;
                 height: 100%;
                 opacity: 1;
@@ -118,7 +120,8 @@
                 opacity: 0;
                 transform: translate3d(0, 30vmin, 0);
                 will-change: opacity, transform;
-            }            
+            }
+            
             .screen-saver--animation .screen-saver__text {
                 animation: screen-saver-text-animation 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) 2.2s 1 normal forwards;
             }
