@@ -43,6 +43,7 @@
                 height: 100%;
                 opacity: 1;
                 transform: scale3d(1, 1, 1);
+                transform-origin: 50% 50%;
                 transition: opacity 0.3s linear 4s, transform 0.3s linear 4s;
             }
             .screen-saver {
@@ -80,8 +81,8 @@
         <script>
             let pageElem = document.querySelector('.page');
 
-            pageElem.style.width = window.innerWidth;
-            pageElem.style.height = window.innerHeight;
+            pageElem.style.width = `${window.innerWidth}px`;
+            pageElem.style.height = `${window.innerHeight}px`;
         </script>
 
         <section class="page__screen-saver">
@@ -150,9 +151,5 @@
                 }
             }
         </style>
-
-        <script>
-            
-        </script>
     </body>
 </html>
