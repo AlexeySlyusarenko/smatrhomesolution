@@ -19,7 +19,7 @@
         <!-- title-->
         <title>Smart home</title>
     </head>
-    <body class="page page--animation">
+    <body class="page page--start-with-animation">     
         <style>
             .page {
                 --page-bg: #353535;
@@ -77,6 +77,13 @@
             }
         </style>
 
+        <script>
+            let pageElem = document.querySelector('.page');
+
+            pageElem.style.width = window.innerWidth;
+            pageElem.style.height = window.innerHeight;
+        </script>
+
         <section class="page__screen-saver">
             <div class="screen-saver screen-saver--animation">
                 <svg class="screen-saver__logo" viewBox="0 0 24 24">
@@ -88,7 +95,7 @@
         </section>
 
         <style>
-            .page--animation .page__screen-saver {
+            .page--start-with-animation .page__screen-saver {
                 animation: screen-saver-animation 0.5s linear 4.4s 1 normal forwards;
             }
             @keyframes screen-saver-animation {
