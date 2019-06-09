@@ -1,0 +1,28 @@
+{
+    "page": {
+        "screen-saver": {
+            "logo": "",
+            "title": "smart home solution"
+        },
+        "trap": "",
+        "plan": "",
+        "control": {
+            "button": {
+                "logo": "",
+                "title": "",
+                "type": "",
+                "state": "",
+                "value": ""
+            }
+        },
+        "nav": {
+            "button": {
+                "logo": "",
+                "title": "",
+                "type": "",
+                "state": "",
+                "value": ""
+            }
+        }
+    }
+}

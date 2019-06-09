@@ -56,18 +56,21 @@
     background-color: var(--icon-bg-color);
 }
 
-.button__text {
+.button__title {
     display: block;
     position: relative;
     padding: 0 0 var(--page-pad) 0;
     font-size: var(--font-size);
+    font-style : normal;
+    font-variant : normal;
+    font-weight : normal;
     color: var(--font-color);
     transition: opacity 0.2s ease-in 0s;
 }
-.button--nav-show .button__text {
+.button--nav-show .button__title {
     opacity: 0;
 }
-.page--nav-show .button--nav-show .button__text {
+.page--nav-show .button--nav-show .button__title {
     opacity: 1;
     transition: opacity 0.2s ease-in 0.1s;
 }

@@ -1,5 +1,8 @@
-import { 
-    Page
- } from "./page.mjs";
+import View from "./view.mjs";
+import Model from "./model.mjs";
+import Controller from "./controller.mjs";
 
-new Page(document.querySelector('.page'));
+const pageView = new View(document.querySelector('.page')),
+    pageModel = new Model();
+    
+new Controller(pageView, pageModel);
