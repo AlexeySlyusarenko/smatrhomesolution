@@ -1,4 +1,4 @@
-import Nav from "/block/nav/nav.mjs";
+import Nav from "../nav/nav.mjs";
 
 class Page {
     constructor(pageElem) {
