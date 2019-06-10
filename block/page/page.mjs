@@ -1,11 +1,9 @@
-import {
-    Nav
-} from "./nav.mjs";
+import Nav from "/block/nav/nav.mjs";
 
 class Page {
     constructor(pageElem) {
         //
-        this.debugCount = 1;
+        this.debugCount = 0;
         //
         this.elem = pageElem;
         this.trapElem = this.elem.querySelector('.page__trap');
@@ -111,6 +109,4 @@ class Page {
     }
 }
 
-export {
-    Page
-}
+export default Page;

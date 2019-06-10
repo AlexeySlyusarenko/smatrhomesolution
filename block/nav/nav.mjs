@@ -1,7 +1,7 @@
 import { 
     ButtonNav,
     ButtonShowNav
- } from "./button.mjs";
+ } from "/block/button/button.mjs";
 
 class Nav {
     constructor(navElem, pageElem) {
@@ -36,6 +36,4 @@ class Nav {
 }
 
 
-export {
-    Nav
-}
+export default Nav;
