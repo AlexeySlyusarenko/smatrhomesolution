@@ -1,4 +1,4 @@
-import Page from '../page/page.mjs';
+import Page from '../block/page/page.mjs';
 
 class View {
     constructor(pageElem) {
