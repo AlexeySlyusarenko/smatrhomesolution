@@ -1,22 +1,35 @@
+import Page from '../block/page/page.mjs';
+
 class View {
     constructor(pageElem) {
         this.pageElem = pageElem;
 
         this.init();
+
+        this.pageObj = new Page(this.pageElem);
     }
     init() {
-        this.addElem('link', '', {rel:"stylesheet", type:"text/css", media:"screen and (min-width: 600px)", href:"css/main.css"});
+        if (window.innerWidth < window.innerHeight) {
+            if(window.innerWidth < 480) {
+                this.addElem(this.pageElem, 'link', '', {rel:"stylesheet", type:"text/css", href:"css/main.css"});
+            }
+        } else {
+            if(window.innerHeight < 480) {
+                this.addElem(this.pageElem, 'link', '', {rel:"stylesheet", type:"text/css", href:"css/main.css"});
+            }
+        }
     }
-    addElem(tag, content = '', attr = {}) {
-        let t = document.createElement(tag);
+    addElem(parentElem, tag, content = '', attr = {}) {
+        let elem = document.createElement(tag);
 
-        t.textContent = content;
-
+        if(content != '') {
+            elem.textContent = content;
+        }
         for (let prop in attr) {
-            t.setAttribute(prop, attr[prop]);
+            elem.setAttribute(prop, attr[prop]);
         }
 
-        this.pageElem.appendChild(t);
+        parentElem.appendChild(elem);
     }
 }
 

@@ -79,6 +79,19 @@
     background-color: var(--page-bg);
 }
 
+.page__debug {
+    z-index: 9999;
+    display: block;
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: beige;
+    color: black;
+    font-size: 15px;
+}
+
 .page__trap {
     z-index: 10;
     position: absolute;
