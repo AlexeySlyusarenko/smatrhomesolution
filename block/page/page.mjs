@@ -101,11 +101,11 @@ class Page {
     }
     //
     debugMes() {
-        let pageDebug = this.elem.querySelector('.page__debug');
+        // let pageDebug = this.elem.querySelector('.page__debug');
 
-        pageDebug.textContent = `width: ${window.innerWidth}, height: ${window.innerHeight}
-                                    count: ${this.debugCount}`;
-        this.debugCount++;
+        // pageDebug.textContent = `width: ${window.innerWidth}, height: ${window.innerHeight}
+        //                             count: ${this.debugCount}`;
+        // this.debugCount++;
     }
 }
 
