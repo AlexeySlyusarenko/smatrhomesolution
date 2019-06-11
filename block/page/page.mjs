@@ -3,7 +3,7 @@ import Nav from "../nav/nav.mjs";
 class Page {
     constructor(pageElem) {
         //
-        this.debugCount = 0;
+        this.debugCount = 1;
         //
         this.elem = pageElem;
         this.trapElem = this.elem.querySelector('.page__trap');
