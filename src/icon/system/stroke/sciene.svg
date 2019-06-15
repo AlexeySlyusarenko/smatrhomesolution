@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <g style="fill: none; stroke: rgb(179, 157, 219);">
-    <circle cx="6" cy="6" r="2"/>
-    <circle cx="6" cy="18" r="2"/>
-    <circle cx="16" cy="12" r="4"/>
-    <path d="M8 17l4.5-3M8 7l4.5 3"/>
-  </g>
-</svg>
