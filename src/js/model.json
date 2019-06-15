@@ -1,0 +1,38 @@
+{
+    
+    "button": {
+        "343234": {
+            "title": "light",
+            "type": "switch slide pushbutton",
+            "state": "disable focus hover",
+            "value": "0 1 100"
+        }
+
+    },
+    "page": {
+        "screen-saver": {
+            "logo": "",
+            "title": "smart home solution"
+        },
+        "trap": "",
+        "plan": "",
+        "control": {
+            "button": {
+                "id": "123",
+                "title": "light",
+                "type": "switch slide pushbutton",
+                "state": "disable focus hover",
+                "value": "0 1 100"
+            }
+        },
+        "nav": {
+            "button": {
+                "logo": "",
+                "title": "",
+                "type": "",
+                "state": "",
+                "value": ""
+            }
+        }
+    }
+}
