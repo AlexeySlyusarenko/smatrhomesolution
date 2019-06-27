@@ -1,5 +1,6 @@
 .control {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     position: absolute;
     left: 0;
     top: 0;
@@ -16,7 +17,6 @@
 }
 
 .control__list {
-    overflow: hidden;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
