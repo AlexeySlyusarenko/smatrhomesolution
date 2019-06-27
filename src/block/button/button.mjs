@@ -1,7 +1,25 @@
-class Button {
-    constructor(buttonElem, pageElem) {
+import domElemObj from "../..js/lib/domElemObj.mjs"
+import eventEmmiterObj from "../..js/lib/eventEmmiterObj.mjs"
+
+import buttonObj from "./buttonObj.mjs"
+import svgObj from "../svg/svgObj.mjs"
+
+export default class Button {
+    constructor(containerElem, id) {
+        this.containerElem = containerElem;
+        
+        if(id.type == 'nav-push') {
+            this.elem = domElemObj.add(this.containerElem, );
+        } else if(id.type == 'nav-switch') {
+
+        } else if(id.type == 'control-push') {
+
+        } else if(id.type == 'control-switch') {
+
+        } else if(id.type == 'control-slide') {
+
+        }
         this.elem = buttonElem;
-        this.pageElem = pageElem;
         
         this.startPressTime;
         this.idPressTimeout;
@@ -22,13 +40,16 @@ class Button {
 
     }
     handleStartPressControlSwitchButton() {
-        this.elem.classList.add('button--press');
-        this.startPressTime = Date.now();
-        this.idPressTimeout = setTimeout(() => {
-            this.elem.style.setProperty('--icon-dx-move', '-37px');
-            this.elem.style.setProperty('--icon-dy-move', '50px');
-            this.elem.classList.add('button--select');
-        }, 400);
+        if (!this.elem.classList.contains('button--select')) {
+            this.elem.classList.add('button--press');
+            this.startPressTime = Date.now();
+            this.idPressTimeout = setTimeout(() => {
+                this.elem.style.setProperty('--icon-dx-move', '-37px');
+                this.elem.style.setProperty('--icon-dy-move', '50px');
+                this.elem.classList.add('button--select');
+                this.pageElem.classList.add('page--button-select');
+            }, 400);
+        }
     }
     handleEndPressControlSwitchButton() {
         if (!this.elem.classList.contains('button--select')) {
@@ -70,5 +91,3 @@ class Button {
     disableHandlers() {
     }
 }
-
-export default Button;

@@ -1,7 +1,7 @@
 @import "common.css";
 
 @import "../block/page/page.css";
-@import "../block/label/label.css";
-@import "../block/nav/nav.css";
 @import "../block/control/control.css";
+@import "../block/nav/nav.css";
+@import "../block/label/label.css";
 @import "../block/button/button.css";

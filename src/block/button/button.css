@@ -3,8 +3,16 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
-    
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    will-change: transform;
+}
+.button.button--select {
+    z-index: 500;
+    transform: scale3d(1.7, 1.7, 1) translate3d(50px, 50px, 0);
+}
+.button.button--hidden {
+    display: none;
 }
 
 .button__icon {
@@ -17,7 +25,7 @@
     stroke: var(--icon-color);
     fill: none;
     transform-origin: 50% 50%;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1);
     transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform;
 }
@@ -63,10 +71,6 @@
 .button--press>.button__icon {
     transform: scale3d(1.1, 1.1, 1);
 }
-.button--select>.button__icon {
-    z-index: 999;
-    transform: scale3d(1.7, 1.7, 1) translate3d(var(--icon-dx-move), var(--icon-dy-move), 0);
-}
 
 .button__title {
     display: block;
@@ -77,12 +81,17 @@
     font-variant : normal;
     font-weight : normal;
     color: var(--font-color);
-    transition: opacity 0.2s ease-in 0s;
+    transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
+.button--nav-switch>.button__title {
+    margin: calc(0px - var(--page-pad)) 0 0 0;
 }
 .button--nav-show .button__title {
     opacity: 0;
 }
 .page--nav-show .button--nav-show .button__title {
     opacity: 1;
-    transition: opacity 0.2s ease-in 0.1s;
+}
+.button--select>.button__title {
+    opacity: 0;
 }

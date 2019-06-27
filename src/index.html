@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color:#353535">
     <head>
         <meta charset="UTF-8">
         <!-- no scalable view -->
@@ -15,30 +15,25 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <!-- favicon android-->
         <link rel="manifest" href="manifest.json">
-        <meta name="theme-color" content="#2e2e2e">
+        <meta name="theme-color" content="#353535">
         <!-- title-->
         <title>Smart home</title>
-
         <style>
-            .page {
-                --page-bg: #353535;
-
-                z-index: 10;
-                overflow: hidden;
-                display: block;
+            body {
                 position: relative;
-                width: 100vw;
-                height: 100vh;
                 padding: 0;
                 margin: 0;
-                background-color: var(--page-bg);
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
-            .page__screen-saver {
-                pointer-events: none;
+
+            .screen-saver {
+                --page-bg: #353535;
+
                 z-index: 1000;
-                overflow: hidden;
-                display: block;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -50,7 +45,7 @@
                 transform-origin: 50% 50%;
                 transition: opacity 0.3s linear 4s, transform 0.3s linear 4s;
             }
-            .page--start-with-animation .page__screen-saver {
+            .screen-saver.screen-saver--animation {
                 -webkit-animation: screen-saver-animation 0.5s ease-in 4.4s 1 normal forwards;
                 animation: screen-saver-animation 0.5s ease-in 4.4s 1 normal forwards;
             }
@@ -70,17 +65,6 @@
                 }
             }
 
-            .screen-saver {
-                z-index: 1000;
-                display: flex;
-                flex-flow: column nowrap;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                width: 100%;
-                height: 100%;
-            }
-
             .screen-saver__logo {
                 display: block;
                 position: relative;
@@ -97,7 +81,7 @@
                 animation: screen-saver-logo-animation 2s linear 0.2s 1 normal forwards;
             }
             .screen-saver--animation .screen-saver__logo>path:nth-child(2) {
-                animation: screen-saver-logo-animation 2s linear 2.2s 1 normal forwards;
+                animation: screen-saver-logo-animation 3s linear 2.2s 1 normal forwards;
             }
             @keyframes screen-saver-logo-animation {
                 0% {
@@ -113,6 +97,7 @@
                     stroke-dasharray: 44px, 44px;
                 }
             }
+            
             .screen-saver__title {
                 font-size: 10vmin;
                 font-style : normal;
@@ -124,7 +109,7 @@
                 transform: translate3d(0, 30vmin, 0);
                 will-change: opacity, transform;
             }
-            
+    
             .screen-saver--animation .screen-saver__title {
                 animation: screen-saver-text-animation 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) 2.2s 1 normal forwards;
             }
@@ -143,160 +128,271 @@
             }
         </style>
     </head>
-    <body class="page page--start-with-animation">     
+    <body>
         <script>
-            let pageElem = document.querySelector('.page');
+            let bodyElem = document.body;
 
-            pageElem.style.width = `${window.innerWidth}px`;
-            pageElem.style.height = `${window.innerHeight}px`;
+            bodyElem.style.width = `${window.innerWidth}px`;
+            bodyElem.style.height = `${window.innerHeight}px`;
         </script>
 
-        <!-- <div class="page__screen-saver">
-            <div class="screen-saver screen-saver--animation">
-                <svg class="screen-saver__logo" viewBox="0 0 24 24">
-                    <path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z"/>
-                    <path d="M10 21l4 0"/>
-                </svg>
-                <h2 class="screen-saver__title">smart home solution</h2>
-            </div>
+        <!-- <div class="screen-saver screen-saver--animation">
+            <svg class="screen-saver__logo" viewBox="0 0 24 24">
+                <path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z"/>
+                <path d="M10 21l4 0"/>
+            </svg>
+            <h2 class="screen-saver__title">smart home solution</h2>
         </div> -->
 
-        <!-- <div class="page__debug"></div> -->
+        <link rel="stylesheet" href="css/main.css">
 
-        <div class="page__curtain"></div>
+        <main class="page">
+            <!-- <div class="page__debug"></div> -->
 
-        <div class="page__control">
-            <ul class="control">
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Bedroom</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-switch">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Balcony</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Bathroom</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Toilet</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Hall</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Children's</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Kitchen</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-switch">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Wardrobe</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Children's</span>
-                    </button>
-                </li>
-                <li class="control__item">
-                    <button class="button button--control-slide">
-                        <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
-                        <span class="button__title">Kitchen</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="page__nav">
-            <nav class="nav">
-                <button class="nav__button-show button button--nav-switch button--nav-show">
+            <div class="page__curtain"></div>
+
+            <header class="page__header">
+                <button class="button button--nav-switch">
                     <svg class="button__icon" viewBox="0 -12 24 48">
-                        <path d="M4 15l8-8l8 8"/>
+                        <path d="M3 7h18M6 12h12M10 17h4"/>
                     </svg>
-                    <span class="button__title">Hide</span>
                 </button>
-                <ul class="nav__list nav__list--quick">
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/>
-                            </svg>
-                        </button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M15 7v-4v4h-6v-4v4h-1a2 2 0 0 0 -2 2v6l3 3v3h6v-3l3-3v-6a2 2 0 0 0 -2 -2z"/>
-                            </svg>    
-                        </button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31z"/>
-                            </svg>
-                        </button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M12 10v6l9-4v8l-18-8v8l9-4"/>
-                                <circle  cx="12" cy="6" r="4"></circle>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                <ul class="nav__list nav__list--filter">
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M3 7h18M6 12h12M10 17h4"/>
-                            </svg>
-                            <span class="button__title">Filter</span>
-                        </button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M4 13l5 5l11-11"/>
-                            </svg>
-                            <span class="button__title">Apply</span>  
-                        </button>
-                    </li>
-                    <li class="nav__item">
-                        <button class="button button--nav-switch">
-                            <svg class="button__icon" viewBox="0 -12 24 48">
-                                <path d="M6 6l12 12m-12 0l12-12"/>
-                            </svg>
-                            <span class="button__title">Clear</span>
-                        </button>
-                    </li>
-                </ul>
-                <div class="nav__list nav__list--main-wrapper">
-                    <ul class="nav__list nav__list--main">
+            </header>
+
+            <div class="page__control">
+                <div class="control control--left">
+                    <ul class="control__list">
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bedroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bedroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Children's</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Kitchen</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Wardrope</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="control">
+                    <ul class="control__list">
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bedroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bedroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Children's</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="control control--right">
+                    <ul class="control__list">
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bedroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Balcony</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Bathroom</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Toilet</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Hall</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Children's</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Kitchen</span>
+                            </button>
+                        </li>
+                        <li class="control__item">
+                            <button class="button button--control-slide">
+                                <svg class="button__icon" viewBox="0 -12 24 48"><path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/></svg>    
+                                <span class="button__title">Wardrope</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="page__nav">
+                <nav class="nav">
+                    <ul class="nav__list">
                         <li class="nav__item nav__item--title">
                             <h4 class="label">1st floor</h4>
                         </li>
@@ -516,10 +612,56 @@
                             </button>
                         </li>
                     </ul>
-                </div>
-            </nav>
-        </div>
+                </nav>
+            </div>
 
-        <script type="module" src="js/index.mjs"></script>
+            <footer class="page__footer">
+                <nav class="nav nav--quick">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <button class="button button--nav-switch">
+                                <svg class="button__icon" viewBox="0 -12 24 48">
+                                    <path d="M9 17l6 0l0 -3a6 6 0 1 0 -6 0z m1 4l4 0"/>
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="button button--nav-switch">
+                                <svg class="button__icon" viewBox="0 -12 24 48">
+                                    <path d="M15 7v-4v4h-6v-4v4h-1a2 2 0 0 0 -2 2v6l3 3v3h6v-3l3-3v-6a2 2 0 0 0 -2 -2z"/>
+                                </svg>    
+                            </button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="button button--nav-switch">
+                                <svg class="button__icon" viewBox="0 -12 24 48">
+                                    <path d="M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31z"/>
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="button button--nav-switch">
+                                <svg class="button__icon" viewBox="0 -12 24 48">
+                                    <path d="M12 10v6l9-4v8l-18-8v8l9-4"/>
+                                    <circle  cx="12" cy="6" r="4"></circle>
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav__item">
+                            <button class="button button--nav-switch">
+                                <svg class="button__icon" viewBox="0 -12 24 48">
+                                    <circle  cx="12" cy="4" r="1"></circle>
+                                    <circle  cx="12" cy="12" r="1"></circle>
+                                    <circle  cx="12" cy="20" r="1"></circle>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+        </main>
+        
+        <!-- <script type="module" src="js/index.mjs"></script> -->
+
     </body>
 </html>
