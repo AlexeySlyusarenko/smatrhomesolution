@@ -189,15 +189,21 @@
 }
 
 .page__footer {
-    z-index: 300;
+    z-index: 400;
     overflow: hidden;
     position: fixed;
     top: auto;
     right: 0;
     bottom: 0;
     left: 0;
+    padding: 0 0 calc(2 * var(--page-pad)) 0;
     background-color: var(--nav-bg);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
+.page--button-select>.page__footer {
+    transform: translate3d(0, calc(var(--icon-size) + 4 * var(--page-pad)), 0);
 }
 @media (orientation: landscape) {
     .page__footer {
@@ -205,5 +211,8 @@
         bottom: 0;
         right: 0;
         left: auto;
+    }
+    .page--button-select>.page__footer {
+        transform: translate3d(calc(var(--icon-size) + 4 * var(--page-pad)), 0, 0);
     }
 }

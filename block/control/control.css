@@ -24,14 +24,18 @@
     position: relative;
     width: 100%;
     min-height: 100%;
-    padding: var(--page-pad) var(--page-pad) calc(3 * var(--page-pad) + var(--icon-size)) var(--page-pad);
+    padding: var(--page-pad) var(--page-pad) calc(6 * var(--page-pad) + var(--icon-size)) var(--page-pad);
 }
 @media (orientation: landscape) {
     .control__list {
-        padding: var(--page-pad) calc(3 * var(--page-pad) + var(--icon-size)) var(--page-pad) var(--page-pad);
+        padding: var(--page-pad) calc(6 * var(--page-pad) + var(--icon-size)) var(--page-pad) var(--page-pad);
     }
 }
 
 .control__item {
+    z-index: 100;
     position: relative;
+}
+.control__item--select.control__item {
+    z-index: 200;
 }

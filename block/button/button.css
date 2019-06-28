@@ -8,14 +8,27 @@
     will-change: transform;
 }
 .button.button--select {
-    z-index: 500;
     transform: scale3d(1.7, 1.7, 1) translate3d(50px, 50px, 0);
 }
-.button.button--hidden {
-    display: none;
+.button::after {
+    content: '';
+    position: fixed;
+    width: var(--page-max-size);
+    height: var(--page-max-size);
+    background-color: var(--page-bg);
+    opacity: 0;
+    transform: scale3d(0, 0, 1);
+    transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,transform 0s linear 0.4s;
+}
+.button--select.button::after {
+    z-index: 330;
+    opacity: 0.9;
+    transform: scale3d(1, 1, 1);
+    transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s, transform 0s linear 0s;
 }
 
 .button__icon {
+    z-index: 340;
     display: block;
     position: relative;
     margin: var(--page-pad);
@@ -28,25 +41,6 @@
     transform: scale3d(1, 1, 1);
     transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform;
-}
-
-.button__icon>path {
-    transform-origin: 12px 12px;
-    transition: transform 0.2s ease 0s;
-}
-.button--nav-show>.button__icon>path {
-    transform: rotate3d(0, 0, 1, 0);
-}
-.page--nav-show .button--nav-show>.button__icon>path {
-    transform: rotate3d(0, 0, 1, 180deg);
-}
-@media (orientation: landscape) {
-    .button--nav-show>.button__icon>path {
-        transform: rotate3d(0, 0, 1, 270deg);
-    }
-    .page--nav-show .button--nav-show>.button__icon>path {
-        transform: rotate3d(0, 0, 1, 90deg);
-    } 
 }
 
 .button--control-switch>.button__icon {
@@ -73,6 +67,7 @@
 }
 
 .button__title {
+    z-index: 350;
     display: block;
     position: relative;
     padding: 0 0 var(--page-pad) 0;
@@ -84,14 +79,6 @@
     transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
 }
 .button--nav-switch>.button__title {
-    margin: calc(0px - var(--page-pad)) 0 0 0;
+    margin: calc(0px - var(--icon-size) / 6) 0 0 0;
 }
-.button--nav-show .button__title {
-    opacity: 0;
-}
-.page--nav-show .button--nav-show .button__title {
-    opacity: 1;
-}
-.button--select>.button__title {
-    opacity: 0;
-}
+
