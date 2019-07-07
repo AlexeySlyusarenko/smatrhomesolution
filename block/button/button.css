@@ -10,6 +10,7 @@
     align-items: center;
     stroke: var(--icon-color);
     color: var(--font-color);
+    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
 }
 @media (orientation: landscape) {
@@ -20,7 +21,9 @@
 
 .button--control {
     z-index: 100;
+    -webkit-transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    -webkit-transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform;
 }
@@ -36,8 +39,11 @@
     stroke-width: 2px;
     stroke: inherit;
     fill: none;
+    -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
+    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
+    -webkit-transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, stroke 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, stroke 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform, stroke;
 }
@@ -73,6 +79,7 @@
     font-variant : normal;
     font-weight : normal;
     color: inherit;
+    -webkit-transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
 }
 .button--nav>.button__title {
@@ -81,6 +88,7 @@
 
 /* event */
 .button--press.button--control>.button__icon {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
     transform: scale3d(1.1, 1.1, 1);
 }
 .button--press.button--nav>.button__icon {
@@ -89,6 +97,7 @@
 
 .button--select.button--control {
     z-index: 140;
+    -webkit-transform: scale3d(1.7, 1.7, 1) translate3d(var(--button-select-move-dx), var(--button-select-move-dy), 0);
     transform: scale3d(1.7, 1.7, 1) translate3d(var(--button-select-move-dx), var(--button-select-move-dy), 0);
 }
 
