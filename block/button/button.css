@@ -1,32 +1,31 @@
 .button {
+    --button-select-move-dx: 0px;
+    --button-select-move-dy: 0px;
+}
+
+.button {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    stroke: var(--icon-color);
+    color: var(--font-color);
+    transform-origin: 0 0;
+}
+@media (orientation: landscape) {
+    .button--landscape-hidden{
+        display: none;
+    }
+}
+
+.button--control {
+    z-index: 100;
     transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform;
 }
-.button.button--select {
-    transform: scale3d(1.7, 1.7, 1) translate3d(50px, 50px, 0);
-}
-.button::after {
-    content: '';
-    position: fixed;
-    width: var(--page-max-size);
-    height: var(--page-max-size);
-    background-color: var(--page-bg);
-    opacity: 0;
-    transform: scale3d(0, 0, 1);
-    transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,transform 0s linear 0.4s;
-}
-.button--select.button::after {
-    z-index: 330;
-    opacity: 0.9;
-    transform: scale3d(1, 1, 1);
-    transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s, transform 0s linear 0s;
-}
 
+/* icon */
 .button__icon {
     z-index: 340;
     display: block;
@@ -35,37 +34,35 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2px;
-    stroke: var(--icon-color);
+    stroke: inherit;
     fill: none;
     transform-origin: 50% 50%;
     transform: scale3d(1, 1, 1);
-    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
-    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, stroke 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    will-change: transform, stroke;
 }
 
-.button--control-switch>.button__icon {
+.button--control.button--switch>.button__icon {
     width: var(--button-size);
     height: var(--button-size);
     border-radius: var(--button-radius);
     background-color: var(--button-bg-color);
 }
-.button--control-slide>.button__icon {
+.button--control.button--slide>.button__icon {
     width: calc(2 * (var(--button-size) + var(--page-pad)));
     height: var(--button-size);
     border-radius: var(--button-radius);
     background-color: var(--button-bg-color);
 }
-.button--nav-switch>.button__icon {
+
+.button--nav>.button__icon {
     width: var(--icon-size);
     height: var(--icon-size);
     border-radius: var(--icon-size);
     /* background-color: var(--icon-bg-color); */
 }
 
-.button--press>.button__icon {
-    transform: scale3d(1.1, 1.1, 1);
-}
-
+/* title */
 .button__title {
     z-index: 350;
     display: block;
@@ -75,10 +72,31 @@
     font-style : normal;
     font-variant : normal;
     font-weight : normal;
-    color: var(--font-color);
+    color: inherit;
     transition: opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
 }
-.button--nav-switch>.button__title {
+.button--nav>.button__title {
     margin: calc(0px - var(--icon-size) / 6) 0 0 0;
+}
+
+/* event */
+.button--press.button--control>.button__icon {
+    transform: scale3d(1.1, 1.1, 1);
+}
+.button--press.button--nav>.button__icon {
+
+}
+
+.button--select.button--control {
+    z-index: 140;
+    transform: scale3d(1.7, 1.7, 1) translate3d(var(--button-select-move-dx), var(--button-select-move-dy), 0);
+}
+
+.button--active.button--control {
+    stroke: red;
+}
+.button--active.button--nav {
+    stroke: red;
+    color: red;
 }
 

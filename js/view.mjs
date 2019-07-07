@@ -1,27 +1,62 @@
-import Page from '../../block/page/page.mjs';
-import Nav from "../../block/nav/nav.mjs";
-import Button from "../../block/button/button.mjs";
+// import Page from '../block/page/page.mjs';
+// import Nav from "../block/nav/nav.mjs";
+import {
+    SlideControlButton,
+    SwitchControlButton,
+} from "../block/button/button.mjs";
 
 export default class View {
     constructor(containerPageElem) {
         this.containerPageElem = containerPageElem;
 
-        this.pageObj.init();
-    }
-    init() {
-        if (window.innerWidth < window.innerHeight) {
-            if(window.innerWidth < 480) {
-                this.addElem(this.pageElem, 'link', '', '', {rel:"stylesheet", type:"text/css", href:"css/main.css"});
-            }
-        } else {
-            if(window.innerHeight < 480) {
-                this.addElem(this.pageElem, 'link', '', '', {rel:"stylesheet", type:"text/css", href:"css/main.css"});
+        this.loadStyle = {
+            mobile: {
+                landscape: false,
+                portrait: false
+            },
+            tablet: {
+                landscape: false,
+                portrait: false
+            },
+            desktop: {
+                landscape: false,
+                portrait: false
             }
         }
 
-        this.pageObj = new Page(this.containerPageElem);
-        this.navObj = new Nav(this.pageObj.elem);
-        this.ButtonObj = new Button(this.pageElem);
+        this.el = {};
+
+        this.init();
+
+        this.addButton('control-switch', 234, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'yama');
+        this.el[234].add(document.getElementsByClassName('control')[1]);
+
+        this.addButton('control-slide', 234, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'yama');
+        this.el[234].add(document.getElementsByClassName('control')[1]);
+
+        console.log(this.el);
+    }
+    init() {
+        this.loadStyleFile();
+        this.setHandlers();
+    }
+    // handlers
+    setHandlers() {
+        window.addEventListener('resize', this.loadStyleFile.bind(this));
+    }
+    //
+    loadStyleFile() {
+        if (window.innerWidth < window.innerHeight) {
+            if(!this.loadStyle.mobile.portrait && window.innerWidth < 480) {
+                this.addStyleLinkElem("css/main.css");
+                this.loadStyle.mobile = true;
+            }
+        } else {
+            if(!this.loadStyle.mobile.landscape && window.innerHeight < 480) {
+                this.addStyleLinkElem("css/main.css");
+                this.loadStyle.mobile = true;
+            }
+        }
     }
     addElem(parentElem, tag, style = '', content = '', attr = {}) {
         let elem = document.createElement(tag);
@@ -37,5 +72,15 @@ export default class View {
         }
 
         parentElem.appendChild(elem);
+    }
+    addStyleLinkElem(styleFilePath) {
+        this.addElem(this.containerPageElem, 'link', '', '', {rel:"stylesheet", type:"text/css", href:styleFilePath});
+    }
+    addButton(typeButton, id, icon = '', title = '', attr = {}) {
+        if (typeButton == 'control-slide') {
+            this.el[id] = new SlideControlButton(id, icon, title, attr);
+        } else if (typeButton == 'control-switch') {
+            this.el[id] = new SwitchControlButton(id, icon, title, attr);
+        }
     }
 }
