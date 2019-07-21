@@ -5,24 +5,6 @@
     --nav-bg: rgba(32, 33, 36, 1);
 
     --font-color: #fff;
-    --font-selected-color: #fff;
-    --font-focus-color: #fff;
-    --font-disable-color: #fff;
-
-    --button-bg-color: #202124;
-    --button-selected-bg-color: #dadada;
-    --button-focus-bg-color: #fff;
-    --button-disable-bg-color: #fff;
-
-    --icon-color: #dadada;
-    --icon-selected-color: #dadada;
-    --icon-focus-color: #dadada;
-    --icon-disable-color: #dadada;
-
-    --icon-bg-color: #424242;
-    --icon-selected-bg-color: #424242;
-    --icon-focus-bg-color: #424242;
-    --icon-disable-bg-color: #424242;
     
     /* set size element */
     /* property:
