@@ -48,9 +48,7 @@ class Button {
                     iconColor: '#ce3000',
                     textColor: '#dadada'
                 },
-                value: {
-                    last: 1
-                }
+                value: undefined
             },
             disable: {
                 state: false,
@@ -249,7 +247,6 @@ class SlideControlButton extends ControlButton {
         console.log('normal');
         this.events.normal.state = true;
         this.events.active.state = false;
-        this.events.active.value.last = parseInt(this.elem.style.getPropertyValue('--button-slide-bg-pos-x'));
         this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0.4s');
         this.elem.style.setProperty('--button-slide-bg-pos-x', '0px');
         this.elem.style.setProperty('--button-icon-color', `${this.events.normal.style.iconColor}`);
@@ -259,7 +256,10 @@ class SlideControlButton extends ControlButton {
         this.events.active.state = true;
         this.events.normal.state = false;
         this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0.4s');
-        this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.active.value.last}px`);
+        
+        this.events.active.value = this.events.startPress.posX - this.elem.getBoundingClientRect().left;
+        this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.active.value}px`);
+
         this.elem.style.setProperty('--button-icon-color', `${this.events.active.style.iconColor}`);
     }
     // handlers
