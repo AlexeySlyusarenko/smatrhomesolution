@@ -258,6 +258,7 @@ class SlideControlButton extends ControlButton {
         this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0.4s');
         
         this.events.active.value = this.events.startPress.posX - this.elem.getBoundingClientRect().left;
+        if (this.events.select.state) this.events.active.value = this.events.active.value / 1.7;
         this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.active.value}px`);
 
         this.elem.style.setProperty('--button-icon-color', `${this.events.active.style.iconColor}`);
