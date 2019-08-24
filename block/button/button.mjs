@@ -1,5 +1,5 @@
 // api 
-//      add(), remove()
+//      showInDOM(), removeFromDOM()
 //      eventEmitter.on(), eventEmitter.remove(), eventEmitter.emit()
 
 import EventEmitter from '../../js/lib/eventEmitter.mjs';
@@ -7,57 +7,49 @@ import EventEmitter from '../../js/lib/eventEmitter.mjs';
 class Button {
     constructor() {
         this.elem;
+        this.value;
 
         this.events = {
-            startPress: {
+            pressStart: {
                 state: false,
                 time: 0,
                 posX: undefined,
                 posY: undefined,
-                idTimeout: undefined,
+                idTimeout: undefined
             },
-            endPress: {
+            pressEnd: {
                 state: false,
                 time: 0,
-                posX: undefined,
-                posY: undefined,
-                idTimeout: undefined,
+                idTimeout: undefined
             },
             slide: {
                 state: false,
                 time: 0,
-                posX: undefined,
-                posY: undefined,
-                idTimeout: undefined,
-            },
-            move: {
-                state: false,
+                posX: 0,
+                posXstart: 0,
+                idTimeout: undefined
             },
             normal: {
                 state: false,
-                style: {
-                    bgColor: '#202124',
-                    iconColor: '#dadada',
-                    textColor: '#dadada'
-                }
+                bgColor: '#202124',
+                iconColor: '#dadada',
+                textColor: '#dadada'
             },
             active: {
                 state: false,
-                style: {
-                    bgColor: '#c5c4c4',
-                    iconColor: '#ce3000',
-                    textColor: '#dadada'
-                },
-                value: undefined
+                bgColor: '#c5c4c4',
+                iconColor: '#ce3000',
+                textColor: '#dadada'
             },
             disable: {
-                state: false,
+                state: false
             },
             select: {
                 state: false,
+                idTimeout: undefined
             },
             focus: {
-                state: false,
+                state: false
             }
         };
 
@@ -103,98 +95,33 @@ class Button {
 
         return this.elem;
     }
-    add(container) {
+    showInDOM(container) {
         return container.appendChild(this.elem);
     }
-    remove() {
+    removeFromDOM() {
         return this.elem.remove();
     }
-    setNormalState() {
+
+    // events
+    setNormal() {
         this.events.normal.state = true;
         this.events.active.state = false;
-        this.elem.style.setProperty('--button-bg-color', `${this.events.normal.style.bgColor}`);
-        this.elem.style.setProperty('--button-icon-color', `${this.events.normal.style.iconColor}`);
+        this.setColorStyle('normal');
     }
-    setActiveState() {
+    setActive() {
         this.events.active.state = true;
         this.events.normal.state = false;
-        this.elem.style.setProperty('--button-bg-color', `${this.events.active.style.bgColor}`);
-        this.elem.style.setProperty('--button-icon-color', `${this.events.active.style.iconColor}`);
+        this.setColorStyle('active');
     }
-    setDisableState() {
+    setDisable() {
         this.events.disable.state = true;
         this.elem.classList.add('button--disable');
     }
-    removeDisableState() {
+    removeDisable() {
         this.events.disable.state = false;
         this.elem.classList.remove('button--disable');
     }
-}
-
-class ControlButton extends Button {
-    constructor() {
-        super();
-    }
-
-
-    // handlers
-    setHandlers() {
-        this.elem.addEventListener('touchstart', (event) => {
-            this.startPress(event);
-        });
-        this.elem.addEventListener('touchend', (event) => {
-            this.endPress(event);
-        });
-        this.elem.addEventListener('touchmove', (event) => {
-            this.slide(event);
-        });
-    }
-    startPress(event) {
-        if (!this.events.disable.state && !this.events.endPress.state ) {
-            this.elem.classList.add('button--press');
-            this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0s');
-
-            this.events.startPress.state = true;    
-            this.events.startPress.time = Date.now();
-            this.events.startPress.posX = event.touches[0].clientX;
-            this.events.startPress.posY = event.touches[0].clientY;
-            
-            if (!this.events.select.state) {
-                this.events.startPress.idTimeout = setTimeout(() => {
-                    this.select();
-                }, 500);
-            }
-            
-        }
-    }
-    endPress() {
-        if (this.events.startPress.state || this.events.slide.state) {
-            if (this.events.startPress.idTimeout) {
-                clearTimeout(this.events.startPress.idTimeout);
-                this.events.startPress.idTimeout = undefined;
-            }
-
-            if (!this.events.move.state && this.events.startPress.state) {
-                if (this.events.active.state == true) {
-                    this.setNormalState();
-                } else {
-                    this.setActiveState();
-                }
-            }
-        
-            this.events.startPress.state = false;
-            this.events.slide.state = false;
-            this.events.move.state = false;
-                        
-            this.events.endPress.time = Date.now() - this.events.startPress.time;
-    
-            this.events.endPress.idTimeout = setTimeout(() => {
-                this.elem.classList.remove('button--press');
-                this.events.endPress.state = false;
-            }, this.events.endPress.time - this.events.startPress.time < 100 ?  200 : 100);    
-        }        
-    }
-    select() {
+    setSelect() {
         let selectPosX = ((window.innerWidth - this.elem.getClientRects()[0].width * 1.7) / 2 - this.elem.getClientRects()[0].x) / 1.7,
             selectPosY = ((window.innerHeight - this.elem.getClientRects()[0].height * 1.7) / 2 - this.elem.getClientRects()[0].y) / 1.7;
 
@@ -202,28 +129,105 @@ class ControlButton extends Button {
         this.elem.style.setProperty('--button-select-move-dy', `${selectPosY}px`);
         this.elem.classList.add('button--select');
 
+        this.events.pressStart.state = false;
         this.events.select.state = true;
-        this.events.startPress.state = false;
     }
-    // handlers
-    slide(event) {
-        if (this.events.select.state) event.preventDefault();
+    removeSelect() {
+        this.elem.classList.remove('button--select');
+        this.events.select.state = false;
+        this.events.select.idTimeout = undefined;
+    }
+    setFocus() {
+        this.events.focus.state = true;
+        this.elem.classList.add('button--focus');
+    }
+    removeFocus() {
+        this.events.focus.state = false;
+        this.elem.classList.remove('button--focus');
+    }
 
-        if (this.events.startPress.state) {
-            this.events.slide.posX = this.events.startPress.posX - event.touches[0].clientX,
-            this.events.slide.posY = this.events.startPress.posY - event.touches[0].clientY;
-    
-            console.log('switch');
-    
-            if (Math.abs(this.events.slide.posX) > 10|| Math.abs(this.events.slide.posY) > 10) {
-                this.events.move.state = true;
-                this.endPress();
+    //style
+    setColorStyle(event) {
+        if (!this.events[event]) return 0;
+
+        if(this.events[event].bgColor) {
+            this.elem.style.setProperty('--button-bg-color', `${this.events[event].bgColor}`);
+        }
+        if(this.events[event].iconColor) {
+            this.elem.style.setProperty('--button-icon-color', `${this.events[event].iconColor}`);
+        }
+        if(this.events[event].textColor) {
+            this.elem.style.setProperty('--button-text-color', `${this.events[event].textColor}`);
+        }
+    }
+
+    // event handlers 
+    setHandlers() {
+        this.elem.addEventListener('touchstart', (event) => {
+            this.pressStart(event);
+        });
+        this.elem.addEventListener('touchend', (event) => {
+            this.pressEnd(event);
+        });
+        this.elem.addEventListener('touchmove', (event) => {
+            this.move(event);
+        });
+    }
+    pressStart(event) {
+        if (this.events.disable.state) return 0;
+
+        this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0s');
+        this.elem.classList.add('button--press');
+
+        this.events.pressStart.state = true;
+        this.events.pressStart.time = Date.now();
+        this.events.pressStart.posX = event.touches[0].clientX;
+        this.events.pressStart.posY = event.touches[0].clientY;
+        
+        if (!this.events.select.state && !this.events.select.idTimeout) {
+            this.events.select.idTimeout = setTimeout(() => {
+                this.setSelect();
+            }, 500);
+        }
+    }
+    pressEnd() {            
+        if (this.events.select.idTimeout) {
+            clearTimeout(this.events.select.idTimeout);
+            this.events.select.idTimeout = undefined;
+        }
+
+        if (this.events.pressStart.state) {
+            if (this.events.active.state == true) {
+                this.setNormal();
+            } else {
+                this.setActive();
             }
+        }
+        this.events.pressStart.state = false;
+        this.events.slide.state = false;
+        this.events.pressEnd.state = true;
+                    
+        this.events.pressEnd.time = Date.now();
+
+        this.events.pressEnd.idTimeout = setTimeout(() => {
+            this.elem.classList.remove('button--press');
+            this.events.pressEnd.state = false;
+        }, this.events.pressEnd.time - this.events.pressStart.time < 300 ?  200 : 0);
+    }
+    move(event) {
+        if (!this.events.pressStart.state) return 0;
+
+        let dX = this.events.pressStart.posX - event.touches[0].clientX,
+            dY = this.events.pressStart.posY - event.touches[0].clientY;
+
+        if (Math.abs(dY) > 10 || Math.abs(dX) > 10) {
+            this.events.pressStart.state = false;
+            this.pressEnd();
         }
     }
 }
 
-class SwitchControlButton extends ControlButton {
+class SwitchControlButton extends Button {
     constructor(id, icon = '', title = '', attr = {}) {
         super();
 
@@ -232,113 +236,98 @@ class SwitchControlButton extends ControlButton {
     }
 }
 
-class SlideControlButton extends ControlButton {
+class SlideControlButton extends Button {
     constructor(id, icon = '', title = '', attr = {}) {
         super();
-
+    
         this.create(id, ['button--control', 'button--slide'],icon, title, attr);
 
         this.iconElem = this.elem.getElementsByClassName('button__icon')[0];
 
         this.setHandlers();
     }
-    // dom
-    setNormalState() {
-        console.log('normal');
+
+    // event
+    setNormal() {
         this.events.normal.state = true;
         this.events.active.state = false;
+        this.events.slide.posX = 0;
+
         this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0.4s');
         this.elem.style.setProperty('--button-slide-bg-pos-x', '0px');
-        this.elem.style.setProperty('--button-icon-color', `${this.events.normal.style.iconColor}`);
+        this.elem.style.setProperty('--button-icon-color', `${this.events.normal.iconColor}`);
     }
-    setActiveState() {
-        console.log('active');
-        this.events.active.state = true;
+    setActive() {
         this.events.normal.state = false;
+        this.events.active.state = true;
         this.elem.style.setProperty('--button-slide-bg-pos-duration-animation', '0.4s');
         
-        this.events.active.value = this.events.startPress.posX - this.elem.getBoundingClientRect().left;
-        if (this.events.select.state) this.events.active.value = this.events.active.value / 1.7;
-        this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.active.value}px`);
-
-        this.elem.style.setProperty('--button-icon-color', `${this.events.active.style.iconColor}`);
-    }
-    // handlers
-    endPress() {
-        if (this.events.startPress.state || this.events.slide.state) {
-            if (this.events.startPress.idTimeout) {
-                clearTimeout(this.events.startPress.idTimeout);
-                this.events.startPress.idTimeout = undefined;
-            }
-
-            console.log(this.events.move.state, this.events.slide.state)
-            if (!this.events.move.state && !this.events.slide.state) {
-                if (this.events.active.state == true) {
-                    this.setNormalState();
-                } else {
-                    this.setActiveState();
-                }
-            }
+        this.events.slide.posX = Math.floor(this.events.pressStart.posX - this.elem.getBoundingClientRect().left);
+        if (this.events.select.state) this.events.slide.posX = this.events.slide.posX / 1.7;
         
-            this.events.startPress.state = false;
-            this.events.slide.state = false;
-            this.events.move.state = false;
-                        
-            this.events.endPress.time = Date.now() - this.events.startPress.time;
-    
-            this.events.endPress.idTimeout = setTimeout(() => {
-                this.elem.classList.remove('button--press');
-                this.events.endPress.state = false;
-            }, this.events.endPress.time - this.events.startPress.time < 100 ?  200 : 100);    
-        }        
+        this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.slide.posX}px`);
+        this.elem.style.setProperty('--button-icon-color', `${this.events.active.iconColor}`);
+    }
+
+    // handlers
+    move(event) {
+        if (this.events.slide.state) {
+            this.slide(event);
+
+            return 0;
+        }
+
+        if (!this.events.pressStart.state) return 0;
+
+        let posdX = this.events.pressStart.posX - event.touches[0].clientX,
+            posdY = this.events.pressStart.posY - event.touches[0].clientY;
+
+        if (Math.abs(posdY) > 10) {
+            this.events.pressStart.state = false;
+            this.pressEnd();
+        } else if (Math.abs(posdX) > 10) {
+            this.slideStart(event);
+        }
+    }
+    slideStart(event) {
+        event.preventDefault();
+
+        this.events.slide.state = true;
+        this.events.pressStart.state = false;
+        this.events.active.state = true;
+
+        if (this.events.select.idTimeout) {
+            clearTimeout(this.events.select.idTimeout);
+            this.events.select.idTimeout = undefined;
+        }
+
+        this.elem.style.setProperty('--button-icon-color', `${this.events.active.iconColor}`);
+        
+        this.events.slide.posXstart = event.touches[0].clientX - this.events.slide.posX;
     }
     slide(event) {
-        if (this.events.select.state) event.preventDefault();
-        if (this.events.slide.state) {
-            event.preventDefault();
-            console.log('slide-move');
-            this.events.slide.posX = Math.floor(event.touches[0].clientX - this.events.startPress.posX);
+        event.preventDefault();
 
-            if (this.events.slide.posX < 1) this.events.slide.posX = 1;
-            if(this.events.slide.posX > this.iconElem.clientWidth) this.events.slide.posX = this.iconElem.clientWidth;
+        this.events.slide.posX = Math.floor(event.touches[0].clientX - this.events.slide.posXstart);
 
-            this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.slide.posX}px`);
-            console.log(this.elem.style.getPropertyValue('--button-slide-bg-pos-x'));
-        }
-        if (this.events.startPress.state) {
-            this.events.slide.posX = this.events.startPress.posX - event.touches[0].clientX,
-            this.events.slide.posY = this.events.startPress.posY - event.touches[0].clientY;
+        if (this.events.slide.posX < 1) this.events.slide.posX = 1;
+        if(this.events.slide.posX > this.iconElem.clientWidth) this.events.slide.posX = this.iconElem.clientWidth;
 
-            if (Math.abs(this.events.slide.posX) > 10) {
-                this.events.slide.state = true;
-                this.events.startPress.state = false;
-                this.events.active.state = true;
+        this.elem.style.setProperty('--button-slide-bg-pos-x', `${this.events.slide.posX}px`);
+    }
+}
 
-                if (this.events.startPress.idTimeout) {
-                    clearTimeout(this.events.startPress.idTimeout);
-                    this.events.startPress.idTimeout = undefined;
-                }
+class SwitchNavButton extends Button {
+    constructor(id, icon = '', title = '', attr = {}) {
+        super();
 
-                this.elem.style.setProperty('--button-icon-color', `${this.events.active.style.iconColor}`);
-                console.log('slide-start');
-                
-                let slideBgPosX = parseInt(this.elem.style.getPropertyValue('--button-slide-bg-pos-x'));
-                if (slideBgPosX !== slideBgPosX) {
-                    this.events.startPress.posX = event.touches[0].clientX;
-                } else {
-                    this.events.startPress.posX = event.touches[0].clientX - slideBgPosX;
-                }
-            }
-    
-            if (!this.events.slide.state && Math.abs(this.events.slide.posY) > 10) {
-                this.events.move.state = true;
-                this.endPress();
-            }    
-        }
+        this.create(id, ['button--nav', 'button--switch'],icon, title, attr);
+        this.setHandlers();
     }
 }
 
 export {
     SlideControlButton,
     SwitchControlButton,
+    SwitchNavButton
 }

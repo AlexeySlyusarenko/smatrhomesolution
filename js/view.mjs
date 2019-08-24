@@ -28,11 +28,15 @@ export default class View {
 
         this.init();
 
-        this.addButton('control-switch', 234, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'yama');
-        this.el[234].add(document.getElementsByClassName('control')[1]);
-
-        this.addButton('control-slide', 234, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'yama');
-        this.el[234].add(document.getElementsByClassName('control')[1]);
+        for (let i = 1; i < 13; i++) {
+            if (i % 4) {
+                this.addButton('control-switch', `id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
+                this.el[`id_${i}`].showInDOM(document.getElementsByClassName('control')[1]);
+            } else {
+                this.addButton('control-slide', `id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
+                this.el[`id_${i}`].showInDOM(document.getElementsByClassName('control')[1]);
+            }
+        }
 
         console.log(this.el);
     }

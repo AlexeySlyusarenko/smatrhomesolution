@@ -22,7 +22,6 @@
         flex-flow: column nowrap;
     }
 }
-
 .nav--main {
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -31,3 +30,20 @@
     min-height: 100%;
     padding: 0 0 calc(2 * var(--page-pad)) 0;
 }
+
+.nav__item--landscape-hidden {
+    display: block;
+}
+
+@media (orientation: landscape) {
+    .nav__item--landscape-hidden {
+        display: none;
+    }
+}
+
+.nav__item--nav-title {
+    width: 100%;
+    padding: calc(3 * var(--page-pad)) 0 0 0;
+    text-align: center;
+}
+ 

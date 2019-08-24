@@ -2,8 +2,3 @@
     font-size: var(--font-size);
     color: var(--font-color);
 }
-.label--nav-title {
-    width: 100%;
-    padding: calc(3 * var(--page-pad)) 0 0 0;
-    text-align: center;
-}
