@@ -231,7 +231,7 @@ class SwitchControlButton extends Button {
     constructor(id, icon = '', title = '', attr = {}) {
         super();
 
-        this.create(id, ['button--control', 'button--switch'],icon, title, attr);
+        this.create(id, ['button--control', 'button--switch'], icon, title, attr);
         this.setHandlers();
     }
 }
@@ -240,7 +240,7 @@ class SlideControlButton extends Button {
     constructor(id, icon = '', title = '', attr = {}) {
         super();
     
-        this.create(id, ['button--control', 'button--slide'],icon, title, attr);
+        this.create(id, ['button--control', 'button--slide'], icon, title, attr);
 
         this.iconElem = this.elem.getElementsByClassName('button__icon')[0];
 
@@ -321,7 +321,7 @@ class SwitchNavButton extends Button {
     constructor(id, icon = '', title = '', attr = {}) {
         super();
 
-        this.create(id, ['button--nav', 'button--switch'],icon, title, attr);
+        this.create(id, ['button--nav', 'button--switch'], icon, title, attr);
         this.setHandlers();
     }
 }
