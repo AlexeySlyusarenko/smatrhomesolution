@@ -2,8 +2,13 @@
 // import Nav from "../block/nav/nav.mjs";
 import {
     SlideControlButton,
-    SwitchControlButton,
-} from "../block/button/button.mjs";
+    SwitchControlButton
+} from "../block/button/button--control.mjs";
+
+import {
+    SwitchNavButton,
+    PushNavButton
+} from "../block/button/button--nav.mjs";
 
 export default class View {
     constructor(containerPageElem) {
@@ -30,13 +35,21 @@ export default class View {
 
         for (let i = 1; i < 13; i++) {
             if (i % 4) {
-                this.addButton('control-switch', `id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
-                this.el[`id_${i}`].showInDOM(document.getElementsByClassName('control')[1]);
+                this.el[`id_${i}`] = new SlideControlButton(`id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
+                this.el[`id_${i}`].show(document.getElementsByClassName('control')[1]);
             } else {
-                this.addButton('control-slide', `id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
-                this.el[`id_${i}`].showInDOM(document.getElementsByClassName('control')[1]);
+                this.el[`id_${i}`] = new SwitchControlButton(`id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
+                this.el[`id_${i}`].show(document.getElementsByClassName('control')[1]);
             }
         }
+
+        for (let i = 0; i < 4; i++) {
+            this.el[`id_${i}n`] = new SwitchNavButton(`id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'heater');
+            this.el[`id_${i}n`].show(document.getElementsByClassName('nav')[2].getElementsByClassName('nav__item')[i]);
+        }
+
+        this.el['id_100'] = new SwitchNavButton('id_100', `<circle  cx="12" cy="4" r="1"></circle><circle  cx="12" cy="12" r="1"></circle><circle  cx="12" cy="20" r="1"></circle>`, 'more');
+        this.el['id_100'].show(document.getElementsByClassName('nav')[2].getElementsByClassName('nav__item')[4]);
 
         console.log(this.el);
     }
@@ -79,12 +92,5 @@ export default class View {
     }
     addStyleLinkElem(styleFilePath) {
         this.addElem(this.containerPageElem, 'link', '', '', {rel:"stylesheet", type:"text/css", href:styleFilePath});
-    }
-    addButton(typeButton, id, icon = '', title = '', attr = {}) {
-        if (typeButton == 'control-slide') {
-            this.el[id] = new SlideControlButton(id, icon, title, attr);
-        } else if (typeButton == 'control-switch') {
-            this.el[id] = new SwitchControlButton(id, icon, title, attr);
-        }
     }
 }

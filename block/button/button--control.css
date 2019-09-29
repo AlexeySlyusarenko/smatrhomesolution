@@ -1,0 +1,50 @@
+.button {
+    /* variables from page style */
+    --button-control-size: var(--button-size);
+    --button-control-radius: var(--button-radius);
+    --button-control-normal-bg-color: #202124;
+    --button-control-active-bg-color: #dadada;
+
+    /* variables to modify with js */
+    --button-control-slide-bg-pos-x: 0px;
+    --button-control-slide-bg-pos-duration-animation: 0s;
+}
+
+.button--control {
+    -webkit-transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+}
+
+.button--control>.button__icon {
+    width: var(--button-control-size);
+    height: var(--button-control-size);
+    border-radius: var(--button-control-radius);
+    background-color: var(--button-control-normal-bg-color);
+    -webkit-transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, background-position var(--button-control-slide-bg-pos-duration-animation) cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, background-position var(--button-control-slide-bg-pos-duration-animation) cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    will-change: transform, stroke, background-position, background-color;
+}
+.button--control.button--switch>.button__icon {
+    width: var(--button-control-size);
+    height: var(--button-control-size);
+    border-radius: var(--button-control-radius);
+    background-color: var(--button-control-normal-bg-color);
+}
+
+.button--control.button--slide>.button__icon {
+    width: calc(2 * (var(--button-control-size) + var(--button-pad)));
+    height: var(--button-control-size);
+    border-radius: var(--button-control-radius);
+    background-size: 480px; 
+    background-image: linear-gradient(to left, var(--button-control-active-bg-color) 0, var(--button-control-active-bg-color) 50%, var(--button-control-normal-bg-color) 50%, var(--button-control-normal-bg-color) 100%);
+    background-position-x: var(--button-control-slide-bg-pos-x);
+}
+
+/* event */
+.button--active.button--control.button--switch>.button__icon {
+    background-color: var(--button-control-active-bg-color);
+}
+.button--press.button--control>.button__icon {
+    -webkit-transform: scale3d(1.05, 1.05, 1);
+    transform: scale3d(1.05, 1.05, 1);
+}

@@ -1,0 +1,22 @@
+.button.button--nav {
+    -webkit-transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    will-change: stroke color;
+}
+
+.button--nav>.button__icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.button--nav>.button__title {
+    margin: calc(0px - var(--icon-size) / 6) 0 0 0;
+}
+
+/* event */
+.button--active.button--nav {
+    stroke: var(--button-active-color);
+}
+.button--active.button--nav {
+    color: var(--button-active-color);
+}
