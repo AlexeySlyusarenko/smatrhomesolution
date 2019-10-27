@@ -17,15 +17,9 @@ class SwitchNavButton extends Button {
         this.events.pressStart.posY = event.touches[0].clientY;
     }
     pressEnd() {
-        if (this.events.pressStart.state) {
-            if (this.events.active.state == true) {
-                this.setNormal();
-            } else {
-                this.setActive();
-            }
-        }
+        if (this.events.pressStart.state) this.setActive();
+
         this.events.pressStart.state = false;
-        this.events.slide.state = false;
         this.events.pressEnd.state = true;
     }
     move(event) {
@@ -41,24 +35,6 @@ class SwitchNavButton extends Button {
     }
 }
 
-class PushNavButton extends SwitchNavButton {
-    constructor(id, icon = '', title = '', attr = {}) {
-        super(id, icon, title, attr);
-    }
-    pressEnd() {
-        if (this.events.pressStart.state) {
-            this.setActive();
-            setTimeout(() => {
-                this.setNormal();
-            }, 300);
-        }
-        this.events.pressStart.state = false;
-        this.events.slide.state = false;
-        this.events.pressEnd.state = true;
-    }
-}
-
 export {
-    SwitchNavButton,
-    PushNavButton
+    SwitchNavButton
 }

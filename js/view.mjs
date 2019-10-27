@@ -1,13 +1,15 @@
-// import Page from '../block/page/page.mjs';
-// import Nav from "../block/nav/nav.mjs";
+import {
+    Slider
+} from "../block/slider/slider.mjs";
+
 import {
     SlideControlButton,
-    SwitchControlButton
+    SwitchControlButton,
+    PushControlButton
 } from "../block/button/button--control.mjs";
 
 import {
-    SwitchNavButton,
-    PushNavButton
+    SwitchNavButton
 } from "../block/button/button--nav.mjs";
 
 export default class View {
@@ -33,6 +35,9 @@ export default class View {
 
         this.init();
 
+        this.el['id_1s'] = new Slider('id_1s');
+        this.el['id_1s'].show(document.getElementsByClassName('page__control')[0]);
+
         for (let i = 1; i < 13; i++) {
             if (i % 4) {
                 this.el[`id_${i}`] = new SlideControlButton(`id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
@@ -43,15 +48,22 @@ export default class View {
             }
         }
 
+        this.el['id_101'] = new PushControlButton('id_101', `<circle  cx="12" cy="4" r="1"></circle><circle  cx="12" cy="12" r="1"></circle><circle  cx="12" cy="20" r="1"></circle>`, 'more');
+        this.el['id_101'].show(document.getElementsByClassName('control')[1]);
+
         for (let i = 0; i < 4; i++) {
             this.el[`id_${i}n`] = new SwitchNavButton(`id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'heater');
-            this.el[`id_${i}n`].show(document.getElementsByClassName('nav')[2].getElementsByClassName('nav__item')[i]);
+            this.el[`id_${i}n`].show(document.getElementsByClassName('nav')[1].getElementsByClassName('nav__item')[i]);
         }
 
         this.el['id_100'] = new SwitchNavButton('id_100', `<circle  cx="12" cy="4" r="1"></circle><circle  cx="12" cy="12" r="1"></circle><circle  cx="12" cy="20" r="1"></circle>`, 'more');
-        this.el['id_100'].show(document.getElementsByClassName('nav')[2].getElementsByClassName('nav__item')[4]);
+        this.el['id_100'].show(document.getElementsByClassName('nav')[1].getElementsByClassName('nav__item')[4]);
 
         console.log(this.el);
+
+        setTimeout(() => {
+            this.el['id_1s'].rollLeft(this.el[`id_1`].elem);
+        }, 2000);
     }
     init() {
         this.loadStyleFile();

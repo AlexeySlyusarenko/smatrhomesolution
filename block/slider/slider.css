@@ -3,6 +3,7 @@
 }
 
 .slider__list {
+    display: block;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
@@ -18,4 +19,7 @@
 }
 .slider__list--right {
     transform: translate3d(100%, 0, 0);
+}
+.slider__list--hidden {
+    display: none;
 }

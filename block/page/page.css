@@ -2,7 +2,7 @@
     /* set color element */
     --page-bg: #353535;
 
-    --nav-bg: rgba(32, 33, 36, 1);
+    --page-elem-bg: rgba(32, 33, 36, 1);
 
     --font-color: #fff;
     
@@ -65,28 +65,6 @@
     font-size: 15px;
 }
 
-.page__curtain {
-    z-index: 300;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-content: flex-end;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--nav-bg);
-    opacity: 0;
-    transform: scale3d(0, 0, 0);
-    transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, transform 0s linear 0.4s;
-}
-.page--nav-show>.page__curtain {
-    opacity: 0.8;
-    transform: scale3d(1, 1, 1);
-    transition: opacity 0.3s linear 0.1s, transform 0s linear 0s;
-}
-
 .page__control {
     z-index: 50;
     overflow: hidden;
@@ -95,33 +73,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-}
-
-.page__header {
-    z-index: 400;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: auto;
-    left: 0;
-    background-color: var(--nav-bg);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transform: translate3d(0, var(--page-footer-move-size), 0);
-    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
-    will-change: transform;
-}
-.page--nav-show>.page__header {
-    transform: translate3d(0, 0, 0);
-}
-@media (orientation: landscape) {
-    .page__header {
-        top: 0;
-        right: auto;
-        bottom: 0;
-        left: 0;
-        transform: translate3d(var(--page-footer-move-size), 0, 0);
-    }
 }
 
 .page__nav {
@@ -135,7 +86,7 @@
     bottom: 0;
     width: var(--page-nav-max-size);
     height: 100%;
-    background-color: var(--nav-bg);
+    background-color: var(--page-elem-bg);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     transform: translate3d(var(--page-nav-show-pos), 0, 0);
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
@@ -165,7 +116,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--nav-bg);
+    background-color: var(--page-elem-bg);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     transform: translate3d(0, 0, 0);
     transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;

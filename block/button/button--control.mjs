@@ -125,7 +125,35 @@ class SlideControlButton extends SwitchControlButton {
     }
 }
 
+class PushControlButton extends SwitchControlButton {
+    constructor(id, icon = '', title = '', attr = {}) {
+        super(id, icon, title, attr);
+    }
+
+    // handlers
+    pressEnd() {
+        if (this.events.pressStart.state) {
+            this.setActive();
+            setTimeout(() => {
+                this.setNormal();
+            }, 300);
+        }
+        
+        this.events.pressStart.state = false;
+        this.events.slide.state = false;
+        this.events.pressEnd.state = true;
+                    
+        this.events.pressEnd.time = Date.now();
+
+        this.events.pressEnd.idTimeout = setTimeout(() => {
+            this.elem.classList.remove('button--press');
+            this.events.pressEnd.state = false;
+        }, this.events.pressEnd.time - this.events.pressStart.time < 300 ?  200 : 0);
+    }
+}
+
 export {
+    SwitchControlButton,
     SlideControlButton,
-    SwitchControlButton
+    PushControlButton
 }

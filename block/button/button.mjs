@@ -1,5 +1,5 @@
 // api 
-//      show(), remove()
+//      show(container), remove()
 
 class Button {
     constructor() {
