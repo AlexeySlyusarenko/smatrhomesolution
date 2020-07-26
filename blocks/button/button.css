@@ -23,7 +23,7 @@
     transform-origin: 0 0;
     -webkit-transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, opacity 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
-    will-change: transform opacity;
+    will-change: transform, opacity;
 }
 .button--active {
     stroke: var(--button-active-color);

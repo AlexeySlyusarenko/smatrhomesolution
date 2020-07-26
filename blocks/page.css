@@ -1,9 +1,7 @@
 .page { 
     /* set color element */
     --page-bg: #353535;
-
-    --page-elem-bg: rgba(32, 33, 36, 1);
-
+    --page-elem-bg: #202124;
     --font-color: #fff;
     
     /* set size element */
@@ -13,32 +11,24 @@
     set in page.js */
     --page-max-size: 100vmax;
     --page-min-size: 100vmin;
-
-    --button-qnt-in-control: 4;
-    --button-qnt-in-nav: 5;
+    --button-in-row: 4;
+    --button-in-nav: 5;
     
     /* calculate size element */
-    --dist-between-el: calc(var(--page-min-size) * (var(--button-qnt-in-nav) - var(--button-qnt-in-control)) / (2 * var(--button-qnt-in-nav) * var(--button-qnt-in-control) + var(--button-qnt-in-nav) - 3 * var(--button-qnt-in-control)));
-
+    --dist-between-el: calc(var(--page-min-size) * (var(--button-in-nav) - var(--button-in-row)) / (2 * var(--button-in-nav) * var(--button-in-row) + var(--button-in-nav) - 3 * var(--button-in-row)));
     --page-pad: calc(var(--dist-between-el) / 2);
-    
-    --button-size: calc((var(--page-min-size) - var(--dist-between-el) * (var(--button-qnt-in-control) + 1)) / var(--button-qnt-in-control));
+    --button-size: calc((var(--page-min-size) - var(--dist-between-el) * (var(--button-in-row) + 1)) / var(--button-in-row));
     --button-radius: calc(var(--button-size) / 4);
-
-    --icon-size: calc(var(--page-min-size) / var(--button-qnt-in-nav) - 2 * var(--page-pad));
-
+    --icon-size: calc(var(--page-min-size) / var(--button-in-nav) - 2 * var(--page-pad));
     --font-size: calc(var(--button-size) / 6);
-    
     --page-footer-move-size: calc(0px - 6 * var(--page-pad) - var(--icon-size));
-
-    --page-nav-max-size: calc(var(--page-min-size) * (var(--button-qnt-in-nav) - 1) / var(--button-qnt-in-nav));
+    --page-nav-max-size: calc(var(--page-min-size) * (var(--button-in-nav) - 1) / var(--button-in-nav));
     --page-nav-show-pos: calc(0px - var(--page-min-size));
 }
 @media (orientation: landscape) {
     .page {
-        --page-nav-max-size: calc(var(--page-min-size) * (var(--button-qnt-in-nav) - 2) / (var(--button-qnt-in-nav) - 1));
-
-        --icon-size: calc(6 / 5 * ((var(--page-min-size) - 2 * var(--page-pad)) / (var(--button-qnt-in-nav) - 1) - var(--font-size) - 3 * var(--page-pad)));
+        --page-nav-max-size: calc(var(--page-min-size) * (var(--button-in-nav) - 2) / (var(--button-in-nav) - 1));
+        --icon-size: calc(6 / 5 * ((var(--page-min-size) - 2 * var(--page-pad)) / (var(--button-in-nav) - 1) - var(--font-size) - 3 * var(--page-pad)));
     }
 }
 
@@ -46,33 +36,12 @@
     z-index: 10;
     overflow: hidden;
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
     background-color: var(--page-bg);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.page__debug {
-    z-index: 9999;
-    display: block;
-    position: fixed;
-    left: 150px;
-    top: 150px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: beige;
-    color: black;
-    font-size: 15px;
-}
-
-.page__control {
-    z-index: 50;
-    overflow: hidden;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
 }
 
 .page__nav {
@@ -94,16 +63,15 @@
 }
 @media (orientation: landscape) {
     .page__nav {
-        top: 0;
         right: 0;
         bottom: auto;
-        left: 0;
         width: 100%;
         height: var(--page-nav-max-size);
         transform: translate3d(0, var(--page-nav-show-pos), 0);
     }
 }
-.page--nav-show>.page__nav {
+
+.page--nav-show > .page__nav {
     transform: translate3d(0, 0, 0);
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0.2s;
 }
@@ -118,21 +86,24 @@
     left: 0;
     background-color: var(--page-elem-bg);
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
-    will-change: transform;
 }
-.page--button-select>.page__footer {
-    transform: translate3d(0, calc(0px - var(--page-footer-move-size)), 0);
-}
+
 @media (orientation: landscape) {
     .page__footer {
         top: 0;
-        bottom: 0;
-        right: 0;
         left: auto;
     }
-    .page--button-select>.page__footer {
-        transform: translate3d(calc(0px - var(--page-footer-move-size)), 0, 0);
-    }
+}
+
+.page__debug {
+    z-index: 9999;
+    display: block;
+    position: fixed;
+    left: 150px;
+    top: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: beige;
+    color: black;
+    font-size: 15px;
 }
