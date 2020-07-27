@@ -28,7 +28,7 @@ export default class View {
 
         this.init();
 
-        for (let i = 1; i < 13; i++) {
+        for (let i = 1; i < 23; i++) {
             if (i % 4) {
                 this.addButton('control-switch', `id_${i}`, `<path d="M4 4.5h14a2 2 0 1 1 0 5h-12a2 2 0 1 0 0 5h12a2 2 0 1 1 0 5h-14"/>`, 'Room');
                 this.el[`id_${i}`].showInDOM(document.getElementsByClassName('control')[1]);
