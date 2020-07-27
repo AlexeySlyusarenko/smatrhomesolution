@@ -3,5 +3,6 @@
 @import "../blocks/page.css";
 @import "../blocks/footer.css";
 @import "../blocks/nav.css";
-@import "../blocks/button/button.css";
+@import "../blocks/button-nav.css";
+/* @import "../blocks/button/button.css"; */
 /* @import "../blocks/slider/slider.css"; */

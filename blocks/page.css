@@ -25,6 +25,7 @@
     --page-nav-max-size: calc(var(--page-min-size) * (var(--button-in-nav) - 1) / var(--button-in-nav));
     --page-nav-show-pos: calc(0px - var(--page-min-size));
 }
+
 @media (orientation: landscape) {
     .page {
         --page-nav-max-size: calc(var(--page-min-size) * (var(--button-in-nav) - 2) / (var(--button-in-nav) - 1));
@@ -61,6 +62,7 @@
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
     will-change: transform;
 }
+
 @media (orientation: landscape) {
     .page__nav {
         right: 0;

@@ -1,0 +1,68 @@
+.button-nav {
+    /* variables from page style */
+    --button-pad: var(--page-pad);
+    --button-text-size: var(--font-size);
+    --button-normal-color: #dadada;
+
+    /* variables to modify with js */
+    --button-active-color: #dadada;
+}
+
+.button-nav {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    stroke: var(--button-normal-color);
+    color: var(--button-normal-color);
+    -webkit-transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    transition: stroke 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s, color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    will-change: stroke color;
+
+}
+
+.button-nav--active {
+    stroke: var(--button-active-color);
+}
+
+/* icon */
+.button-nav__icon {
+    z-index: 340;
+    display: block;
+    position: relative;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: var(--button-pad);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    stroke: inherit;
+    fill: none;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+/* title */
+.button-nav__title {
+    z-index: 350;
+    display: block;
+    position: relative;
+    margin: calc(0px - var(--icon-size) / 6) 0 0 0;
+    padding: 0 0 var(--button-pad) 0;
+    font-size: var(--button-text-size);
+    font-style : normal;
+    font-variant : normal;
+    font-weight : normal;
+    color: inherit;
+    -webkit-transition: opacity 0s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+    transition: opacity 0s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
+
+/* event */
+.button-nav--active {
+    stroke: var(--button-active-color);
+    color: var(--button-active-color);
+}
