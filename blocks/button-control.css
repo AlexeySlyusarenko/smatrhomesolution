@@ -1,0 +1,85 @@
+.button-control {
+  /* variables from page style */
+  --button-control-size: var(--page-button-size);
+  --button-control-margin: var(--page-button-margin);
+  --button-control-radius: calc(var(--button-control-size) / 4);
+  --button-control-title-text-size: var(--page-button-title-text-size);
+  --button-control-value-text-size: var(--page-button-value-text-size);
+  --button-control-bg-color: #202124;
+  --button-control-active-bg-color: #dadada;
+
+  /* variables to modify with js */
+  --button-control-active-color: red;
+}
+
+.button-control {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: var(--button-control-size);
+  margin: var(--button-control-margin);
+  border-radius: var(--button-control-radius);
+  background-color: var(--button-control-bg-color);
+  stroke: var(--button-control-color);
+  color: var(--button-control-color);
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  transition:
+    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    background-color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    background-position var(--button-control-slide-bg-pos-duration-animation) cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+  will-change:
+    stroke,
+    color,
+    transform,
+    background-color,
+    background-position;
+}
+
+.button-control--switch {
+  width: var(--button-control-size);
+}
+
+.button-control--slide {
+  width: calc(2 * var(--button-control-size) + var(--button-control-margin));
+}
+
+.button-control--active {
+  stroke: var(--button-control-active-color);
+  color: var(--button-control-active-color);
+  transition:
+    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s,
+    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
+}
+
+/* icon */
+.button-control__icon {
+  z-index: 340;
+  display: block;
+  position: relative;
+  width: 40%;
+  height: 40%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke: inherit;
+  fill: none;
+}
+
+/* title */
+.button-control__title {
+  will-change: color;
+  z-index: 350;
+  display: block;
+  position: relative;
+  margin: 10% 0 0 0;
+  padding: 0;
+  font-size: var(--button-control-text-size);
+  font-style : normal;
+  font-variant : normal;
+  font-weight : normal;
+  color: inherit;
+}

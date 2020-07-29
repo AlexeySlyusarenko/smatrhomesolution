@@ -1,7 +1,8 @@
 .button {
     /* variables from page style */
     --button-control-size: var(--button-size);
-    --button-control-radius: var(--button-radius);
+    --button-control-radius: var(--button-control-size);
+    --button-nav-text-size: var(--page-button-title-text-size);
     --button-control-normal-bg-color: #202124;
     --button-control-active-bg-color: #dadada;
 

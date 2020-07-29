@@ -1,16 +1,25 @@
 .slider {
+    --slider-list-padding: var(--page-button-margin);
+}
+
+.slider {
     display: block;
+    overflow: auto;
 }
 
 .slider__list {
-    display: block;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    padding: var(--slider-list-padding);
     transform: translate3d(0, 0, 0);
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;    
 }

@@ -1,18 +1,26 @@
 .nav {
+  --nav-text-size: var(--page-button-title-text-size);
+  --nav-text-color: var(--text-color);
+  --nav-bg: var(--page-elem-bg);
+}
+
+.nav {
   width: 100%;
   min-height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
-  padding: 0 0 calc(2 * var(--page-pad)) 0;
+  margin: 0;
+  padding: 0;
 }
 
 .nav__header {
   width: 100%;
-  padding: calc(3 * var(--page-pad)) 0 0 0;
+  padding: calc(2 * var(--nav-text-size)) 0 0 0;
   text-align: center;
-  font-size: var(--font-size);
-  color: var(--font-color);
+  font-size: var(--nav-text-size);
+  font-weight: 400;
+  color: var(--nav-text-color);
 }
 
 .nav__list {
