@@ -9,7 +9,7 @@
   --button-control-bg-color-active: #dadada;
 
   /* variables to modify with js */
-  --button-control-active-color: red;
+  --button-control-color-active: red;
   --button-control-slide-bg-pos-x: 20px;
 }
 
@@ -53,8 +53,8 @@
 }
 
 .button-control--active {
-  stroke: var(--button-control-active-color);
-  color: var(--button-control-active-color);
+  stroke: var(--button-control-color-active);
+  color: var(--button-control-color-active);
   transition:
     color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s,
     stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
