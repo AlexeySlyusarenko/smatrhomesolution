@@ -1,5 +1,6 @@
 .slider {
     --slider-list-padding: var(--page-button-margin);
+    --slider-list-padding-bottom: var(--page-button-nav-height);
 }
 
 .slider {
@@ -20,6 +21,7 @@
     width: 100%;
     /* height: 100%; */
     padding: var(--slider-list-padding);
+    padding-bottom: var(--slider-list-padding-bottom);
     transform: translate3d(0, 0, 0);
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;    
 }
