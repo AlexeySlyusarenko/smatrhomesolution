@@ -1,8 +1,8 @@
 @import "common.css";
 
-@import "../block/page/page.css";
-@import "../block/control/control.css";
-@import "../block/nav/nav.css";
-@import "../block/label/label.css";
-@import "../block/button/button.css";
-@import "../block/slider/slider.css";
+@import "../blocks/page.css";
+@import "../blocks/footer.css";
+@import "../blocks/nav.css";
+@import "../blocks/button-nav.css";
+@import "../blocks/button-control.css";
+@import "../blocks/slider.css";

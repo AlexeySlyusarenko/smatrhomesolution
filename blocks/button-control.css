@@ -1,0 +1,106 @@
+.button-control {
+  /* variables from page style */
+  --button-control-size: var(--page-button-size);
+  --button-control-margin: var(--page-button-margin);
+  --button-control-radius: calc(var(--button-control-size) / 4);
+  --button-control-title-text-size: var(--page-button-title-text-size);
+  --button-control-value-text-size: var(--page-button-value-text-size);
+  --button-control-bg-color: var(--page-elem-bg);
+  --button-control-bg-color-active: var(--page-elem-bg-active);
+  --button-control-color: var(--text-color);
+
+  /* variables to modify with js */
+  --button-control-color-active: red;
+  --button-control-slide-bg-pos-x: 20px;
+  --button-control-slide-bg-pos-duration-animation: 0s;
+}
+
+.button-control {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: var(--button-control-size);
+  margin: var(--button-control-margin);
+  margin-bottom: calc(var(--button-control-title-text-size) + 2 * var(--button-control-margin));
+  border-radius: var(--button-control-radius);
+  background-color: var(--button-control-bg-color);
+  stroke: var(--button-control-color);
+  color: var(--button-control-color);
+  transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+  transition:
+    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    background-color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    background-position var(--button-control-slide-bg-pos-duration-animation) cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+  will-change:
+    stroke,
+    color,
+    transform,
+    background-color,
+    background-position;
+}
+
+.button-control--switch {
+  width: var(--button-control-size);
+}
+
+.button-control--slide {
+  width: calc(2 * (var(--button-control-size) + var(--button-control-margin)));
+  background-size: calc(4 * (var(--button-control-size) + var(--button-control-margin)) + 10px);
+  background-image: linear-gradient(to left, var(--button-control-bg-color-active) 0, var(--button-control-bg-color-active) 50%, var(--button-control-bg-color) 50%, var(--button-control-bg-color) 100%);
+  background-position-x: var(--button-control-slide-bg-pos-x);
+}
+
+.button-control--active {
+  background-color: var(--button-control-bg-color-active);
+  stroke: var(--button-control-color-active);
+  color: var(--button-control-color-active);
+}
+
+.button-control--press {
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+.button-control__title {
+  will-change: color;
+  z-index: 350;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: calc(0px - (var(--button-control-title-text-size) + var(--button-control-margin)));
+  left: 0;
+  font-size: var(--button-control-title-text-size);
+  font-style : normal;
+  font-variant : normal;
+  font-weight : normal;
+  text-align: center;
+  color: var(--button-control-color);
+  cursor: auto;
+}
+
+.button-control__icon {
+  z-index: 340;
+  display: block;
+  position: relative;
+  width: 50%;
+  height: 50%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke: inherit;
+  fill: none;
+}
+
+.button-control__value {
+  position: absolute;
+  bottom: calc(var(--button-control-value-text-size) / 5 * 4);
+  font-size: var(--button-control-value-text-size);
+  font-style : normal;
+  font-variant : normal;
+  font-weight : normal;
+  text-align: center;
+  color: inherit;
+}

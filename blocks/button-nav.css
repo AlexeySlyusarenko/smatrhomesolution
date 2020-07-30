@@ -1,0 +1,70 @@
+.button-nav {
+  /* variables from page style */
+  --button-nav-title-text-size: var(--page-button-title-text-size);
+  --button-nav-width: var(--page-button-nav-width);
+  --button-nav-height: var(--page-button-nav-height);
+  --button-nav-color: #dadada;
+
+  /* variables to modify with js */
+  --button-nav-active-color: red;
+}
+
+@media (orientation: landscape) {
+  .button-nav {
+      --button-nav-height: calc(100vmin / 4);
+      --button-nav-width: calc(100vmin / 5);
+  }
+}
+
+.button-nav {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: var(--button-nav-width);
+  height: var(--button-nav-height);
+  stroke: var(--button-nav-color);
+  color: var(--button-nav-color);
+  transition:
+    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s,
+    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
+  will-change: stroke, color;
+}
+
+.button-nav--active {
+  stroke: var(--button-nav-active-color);
+  color: var(--button-nav-active-color);
+  transition:
+    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s,
+    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
+}
+
+/* icon */
+.button-nav__icon {
+  z-index: 340;
+  display: block;
+  position: relative;
+  width: 40%;
+  height: 40%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke: inherit;
+  fill: none;
+}
+
+/* title */
+.button-nav__title {
+  will-change: color;
+  z-index: 350;
+  display: block;
+  position: relative;
+  margin: 10% 0 0 0;
+  padding: 0;
+  font-size: var(--button-nav-title-text-size);
+  font-style : normal;
+  font-variant : normal;
+  font-weight : normal;
+  color: inherit;
+}
