@@ -2,6 +2,7 @@
   /* set color element */
   --page-bg: #353535;
   --page-elem-bg: #202124;
+  --page-elem-bg-active: #dadada;
   --text-color: #fff;
   
   /* set size element */
@@ -75,6 +76,23 @@
 .page--nav-show > .page__nav {
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
+
+.page__main {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: var(--page-button-nav-height);
+  left: 0;
+}
+
+@media (orientation: landscape) {
+  .page__main {
+    position: fixed;
+    right: var(--page-button-nav-width);
+    bottom: 0;
+  }
 }
 
 .page__footer {

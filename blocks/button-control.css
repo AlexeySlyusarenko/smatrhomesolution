@@ -5,12 +5,14 @@
   --button-control-radius: calc(var(--button-control-size) / 4);
   --button-control-title-text-size: var(--page-button-title-text-size);
   --button-control-value-text-size: var(--page-button-value-text-size);
-  --button-control-bg-color: #202124;
-  --button-control-bg-color-active: #dadada;
+  --button-control-bg-color: var(--page-elem-bg);
+  --button-control-bg-color-active: var(--page-elem-bg-active);
+  --button-control-color: var(--text-color);
 
   /* variables to modify with js */
   --button-control-color-active: red;
   --button-control-slide-bg-pos-x: 20px;
+  --button-control-slide-bg-pos-duration-animation: 0s;
 }
 
 .button-control {
@@ -21,8 +23,7 @@
   position: relative;
   height: var(--button-control-size);
   margin: var(--button-control-margin);
-  margin-bottom: calc(var(--button-control-title-text-size) + 3 * var(--button-control-margin));
-  ;
+  margin-bottom: calc(var(--button-control-title-text-size) + 2 * var(--button-control-margin));
   border-radius: var(--button-control-radius);
   background-color: var(--button-control-bg-color);
   stroke: var(--button-control-color);
@@ -48,16 +49,19 @@
 
 .button-control--slide {
   width: calc(2 * (var(--button-control-size) + var(--button-control-margin)));
+  background-size: calc(4 * (var(--button-control-size) + var(--button-control-margin)) + 10px);
   background-image: linear-gradient(to left, var(--button-control-bg-color-active) 0, var(--button-control-bg-color-active) 50%, var(--button-control-bg-color) 50%, var(--button-control-bg-color) 100%);
   background-position-x: var(--button-control-slide-bg-pos-x);
 }
 
 .button-control--active {
+  background-color: var(--button-control-bg-color-active);
   stroke: var(--button-control-color-active);
   color: var(--button-control-color-active);
-  transition:
-    color 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s,
-    stroke 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
+}
+
+.button-control--press {
+  transform: scale3d(1.05, 1.05, 1);
 }
 
 .button-control__title {
@@ -73,7 +77,7 @@
   font-variant : normal;
   font-weight : normal;
   text-align: center;
-  color: inherit;
+  color: var(--button-control-color);
   cursor: auto;
 }
 
@@ -91,10 +95,12 @@
 }
 
 .button-control__value {
+  position: absolute;
+  bottom: calc(var(--button-control-value-text-size) / 5 * 4);
   font-size: var(--button-control-value-text-size);
   font-style : normal;
   font-variant : normal;
   font-weight : normal;
   text-align: center;
-  color: var();
+  color: inherit;
 }
