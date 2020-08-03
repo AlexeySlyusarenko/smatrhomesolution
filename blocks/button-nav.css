@@ -9,13 +9,6 @@
   --button-nav-active-color: red;
 }
 
-@media (orientation: landscape) {
-  .button-nav {
-      --button-nav-height: calc(100vmin / 4);
-      --button-nav-width: calc(100vmin / 5);
-  }
-}
-
 .button-nav {
   display: flex;
   flex-flow: column nowrap;

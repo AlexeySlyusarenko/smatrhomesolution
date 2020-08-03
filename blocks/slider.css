@@ -26,11 +26,13 @@
   transform: translate3d(0, 0, 0);
   transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;    
 }
+
 .slider__list--left {
   transform: translate3d(-100%, 0, 0);
   transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;    
 
 }
+
 .slider__list--right {
   transform: translate3d(100%, 0, 0);
   transition: transform 0.225s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;    

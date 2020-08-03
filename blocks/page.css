@@ -29,7 +29,7 @@
 @media (orientation: landscape) {
   .page {
     --page-button-nav-height: calc(var(--page-min-size) / (var(--button-in-nav) - 1));
-    --page-button-nav-width: calc(var(--page-button-nav-height) + var(--button-nav-text-size));
+    --page-button-nav-width: calc(var(--page-min-size) / var(--button-in-nav));
   }
 }
 
